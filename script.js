@@ -836,7 +836,7 @@ Toda a linha VSP One é gerenciada pelo **Hitachi Ops Center** — uma única co
     {
         id: 6,
         title: "Snapshots: A Base da Proteção de Dados Moderna",
-        date: "2026-02-20",
+        date: "2026-03-22",
         excerpt: "Entenda como funcionam os snapshots, diferenças entre COW e ROW, e as implementações de cada fabricante.",
         content: `# Snapshots: A Base da Proteção de Dados Moderna
 
