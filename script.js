@@ -866,7 +866,7 @@ Quando você combina:
 - Pure Storage **SafeMode** com replicação para array remoto — snapshots que nem o admin local consegue deletar
 - IBM **Safeguarded Copy** — snapshots air-gapped internamente, inacessíveis ao host
 - Hitachi **HUR com journal** replicado para site remoto com retenção imutável
-- Huawei **HyperCDP** replicado para cloud com políticas de retenção regulatória
+- Huawei **HyperCDP** com journal local para recovery granular no próprio array
 
 A distinção que importa na prática:
 
