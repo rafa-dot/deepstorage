@@ -128,7 +128,7 @@ Implementa WORM (Write Once, Read Many) em nível de volume:
 A partir do ONTAP 9.8, o ONTAP suporta **S3 nativo** — sem depender do StorageGRID. Permite criar buckets S3 diretamente em um cluster ONTAP existente:
 - Acesso via API S3 padrão (compatível com ferramentas que consomem S3)
 - Coexiste com NFS, SMB e SAN no mesmo cluster
-- Useful para aplicações cloud-native que precisam de object storage on-prem sem infraestrutura separada
+- Útil para aplicações cloud-native que precisam de object storage on-prem sem infraestrutura separada
 - Integração com **FabricPool**: o ONTAP pode usar um bucket S3 (local, StorageGRID ou nuvem pública) como tier frio para dados pouco acessados, liberando capacidade flash automaticamente
 
 ---
@@ -1478,7 +1478,7 @@ On-Prem Primary --> Cloud Secondary (Azure/AWS)
 ### Desafios
 - Latência WAN
 - Custos de egress
-- Compatibilidade de features
+- Compatibilidade de recursos
 
 ## Proteção Anti-Ransomware
 
@@ -1909,7 +1909,7 @@ O VSP One é a nova geração de armazenamento enterprise da Hitachi, construíd
 Um diferencial único do VSP One: ele pode **virtualizar arrays de outros fabricantes** (NetApp, Dell EMC, Pure Storage) e expô-los como volumes locais. Isso permite:
 - Migração não-disruptiva de workloads entre arrays
 - Consolidação de infraestrutura legada sem downtime
-- Extensão de features Hitachi (snapshots, replicação) para arrays externos
+- Extensão de recursos Hitachi (snapshots, replicação) para arrays externos
 
 ### Data Services
 
@@ -5161,6 +5161,7 @@ Automatiza **failover e failback** de ambientes VMware inteiros.
 - Pure Storage (ActiveDR)
 - Dell EMC (SRDF)
 - Hitachi (TrueCopy/Universal Replicator)
+- Huawei Dorado (HyperReplication via SRA — Storage Replication Adapter)
 
 **Fluxo de Recovery:**
 
