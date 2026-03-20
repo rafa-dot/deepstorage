@@ -3470,9 +3470,9 @@ O pNFS define diferentes tipos de layout conforme o backend de storage:
 
 | Layout Type | RFC | Backend | Descrição |
 |---|---|---|---|
-| **Files** | RFC 5661 | NFS (file servers) | Dados distribuídos em múltiplos file servers NFS |
-| **Block** | RFC 5663 | SAN (iSCSI, FC) | Cliente acessa LUNs diretamente via protocolo block |
-| **Object** | RFC 5664 | Object Storage | Cliente acessa objetos diretamente em OSD (Object Storage Devices) |
+| **Files** | RFC 5661 | NFS (file servers) | Dados distribuídos em múltiplos file servers NFS — o único amplamente adotado |
+| **Block** | RFC 5663 | SAN (iSCSI, FC) | Definido no padrão, mas sem adoção real — requer SAN e NFS simultaneamente no cliente, o que elimina o benefício |
+| **Object** | RFC 5664 | Object Storage | Cliente acessa objetos diretamente em OSDs — adoção muito limitada |
 | **Flex Files** | RFC 8435 | NFS flexível | Evolução do Files layout, mais tolerante a falhas |
 
 #### pNFS Files Layout — O Mais Comum
