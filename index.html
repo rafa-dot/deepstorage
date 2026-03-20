@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage Tech Blog - Enterprise Storage, Data Protection, Automation & Infrastructure</title>
+    <meta name="description" content="Blog técnico sobre armazenamento de dados corporativo: Hitachi Vantara, NetApp, Dell EMC, Pure Storage, NVMe, Fibre Channel, data protection e muito mais.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Storage Tech Blog">
+    <meta property="og:description" content="Blog técnico sobre armazenamento de dados corporativo: Hitachi Vantara, NetApp, Dell EMC, Pure Storage, NVMe, Fibre Channel, data protection e muito mais.">
+    <meta property="og:site_name" content="Storage Tech Blog">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Storage Tech Blog">
+    <meta name="twitter:description" content="Blog técnico sobre armazenamento de dados corporativo: Hitachi Vantara, NetApp, Dell EMC, Pure Storage e muito mais.">
+
+    <link rel="canonical" href="https://www.deepstorage.tech/">
+    <link rel="alternate" type="application/rss+xml" title="Storage Tech Blog RSS" href="/feed.xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+    <nav class="navbar" aria-label="Navegação principal">
+        <div class="container">
+            <p class="logo"><a href="index.html">Storage Tech</a></p>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+                <li><a href="conceitos.html">Conceitos</a></li>
+                <li><a href="recursos.html">Recursos</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Storage Tech Blog</h1>
+            <p>Enterprise Storage, Data Protection, Automation &amp; Infrastructure Insights</p>
+        </div>
+    </header>
+
+    <main class="container" id="main-content">
+        <section class="featured-posts" aria-label="Todos os posts">
+            <h2>All Posts</h2>
+            <div class="post-list" id="all-posts">
+                <!-- Posts will be loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; <span id="copyright-year"></span> Storage Tech Blog. All rights reserved.</p>
+                <div class="visit-counter" aria-label="Contador de visitas">
+                    <span class="counter-icon" aria-hidden="true">👁️</span>
+                    <span class="counter-text">Visitas:</span>
+                    <span class="counter-value" id="visit-count" aria-live="polite">0</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <noscript>
+        <div style="padding: 2rem; text-align: center; background: #1a1a1a; color: #e0e0e0;">
+            <p>Este site requer JavaScript para exibir o conteúdo. Por favor, habilite o JavaScript no seu navegador.</p>
+        </div>
+    </noscript>
+
+    <script src="script.js"></script>
+</body>
+</html>

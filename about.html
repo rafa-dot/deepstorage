@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - Storage Tech Blog</title>
+    <meta name="description" content="Conheça o Storage Tech Blog: análises técnicas, conceitos fundamentais e recursos sobre storage enterprise — Hitachi Vantara, NetApp, Dell EMC, Pure Storage e mais.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sobre - Storage Tech Blog">
+    <meta property="og:description" content="Blog técnico sobre armazenamento de dados corporativo enterprise. Hitachi Vantara, NetApp, Dell EMC, Pure Storage, NVMe, Fibre Channel e data protection.">
+    <meta property="og:site_name" content="Storage Tech Blog">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Sobre - Storage Tech Blog">
+    <meta name="twitter:description" content="Blog técnico sobre armazenamento de dados corporativo enterprise.">
+
+    <link rel="canonical" href="https://www.deepstorage.tech/about.html">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+    <nav class="navbar" aria-label="Navegação principal">
+        <div class="container">
+            <p class="logo"><a href="index.html">Storage Tech</a></p>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="conceitos.html">Conceitos</a></li>
+                <li><a href="recursos.html">Recursos</a></li>
+                <li><a href="about.html" class="active" aria-current="page">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container" id="main-content">
+        <article class="about-content">
+            <h1>Sobre o Storage Tech Blog</h1>
+
+            <p>O <strong>Deep Storage</strong> — publicado em <a href="https://www.deepstorage.tech" target="_blank" rel="noopener noreferrer">www.deepstorage.tech</a> — é uma publicação técnica independente dedicada ao universo do armazenamento de dados corporativo. O conteúdo é voltado para profissionais de infraestrutura, arquitetos de storage e times de TI que trabalham com ambientes enterprise.</p>
+
+            <h2>O que publicamos</h2>
+
+            <p>O blog cobre os principais tópicos de storage enterprise sem comparativos promocionais ou dados não verificáveis. O foco é conteúdo técnico objetivo:</p>
+
+            <ul>
+                <li>Análises de plataformas e portfólios dos principais fabricantes</li>
+                <li>Fundamentos de protocolos: FC, iSCSI, NFS, SMB, NVMe-oF, S3</li>
+                <li>Data protection: snapshots, replicação, DR, ransomware protection, WORM e compliance</li>
+                <li>Arquitetura de storage: SAN, NAS, object storage, software-defined</li>
+                <li>Automation e integração: APIs, Ops Center, Ansible, Kubernetes/CSI</li>
+                <li>História e evolução da tecnologia de armazenamento</li>
+            </ul>
+
+            <h2>Fabricantes cobertos</h2>
+
+            <p>O blog tem cobertura aprofundada de Hitachi Vantara (VSP One, VSP 5000, HCP, Ops Center), NetApp (ONTAP, AFF, FabricPool, SnapMirror), Dell Technologies (PowerStore, PowerMax, PowerScale/OneFS, ECS), Pure Storage (FlashArray//C, DirectFlash, Purity), Huawei (Dorado V6/V7, OceanStor Pacific, HyperCDP) e HPE (Alletra 9000/6000, Primera, Nimble, InfoSight).</p>
+
+            <h2>Sobre o conteúdo</h2>
+
+            <p>Todo o conteúdo é produzido com base em documentação oficial, especificações públicas e conhecimento técnico consolidado. Não publicamos números de performance sem fonte verificável, comparativos de preço ou roadmaps especulativos. Quando há incerteza, isso é indicado explicitamente.</p>
+
+            <p>Para especificações atualizadas de qualquer produto, recomendamos sempre consultar a documentação oficial do fabricante.</p>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="copyright-year"></span> Storage Tech Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <noscript>
+        <div style="padding: 2rem; text-align: center; background: #1a1a1a; color: #e0e0e0;">
+            <p>Este site requer JavaScript para algumas funcionalidades. Por favor, habilite o JavaScript no seu navegador.</p>
+        </div>
+    </noscript>
+
+    <script>
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.html$|\\\\.css$|\\\\.js$\")",
+      "Bash(node:*)",
+      "Bash(grep -n \"^\\\\- .*\\\\`[^\\\\]\" /Users/rafael/my-blog/script.js)",
+      "Bash(node -e \"require\\(''''/Users/rafael/my-blog/script.js''''\\)\")",
+      "WebSearch"
+    ]
+  }
+}
