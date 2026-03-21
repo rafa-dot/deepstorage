@@ -771,7 +771,7 @@ Módulo de **automação via REST API** — o ponto de entrada para Infrastructu
 
 **Características:**
 - Todos os recursos de provisionamento e configuração expostos como endpoints REST
-- Documentação OpenAPI (Swagger) para descoberta e teste de endpoints
+- Documentação REST API disponível no Hitachi Knowledge Center (guia HTML + PDF por versão)
 - Autenticação por token com controle de sessão e RBAC
 - Operações cobertas: criar/deletar volumes, mapear LUNs, configurar host groups, gerenciar replicação
 
@@ -2093,7 +2093,7 @@ O módulo de **automação via REST API** — ponto central para Infrastructure 
 
 **Características:**
 - Todos os recursos de provisionamento e configuração expostos como endpoints REST
-- Documentação OpenAPI (Swagger) para descoberta e testes de endpoints
+- Documentação REST API disponível no Hitachi Knowledge Center (guia HTML + PDF por versão)
 - Autenticação por token com controle de sessão
 - Suporte a operações: criar/deletar volumes, mapear LUNs, configurar host groups, gerenciar replicação
 

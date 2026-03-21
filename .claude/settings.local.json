@@ -5,7 +5,19 @@
       "Bash(node:*)",
       "Bash(grep -n \"^\\\\- .*\\\\`[^\\\\]\" /Users/rafael/my-blog/script.js)",
       "Bash(node -e \"require\\(''''/Users/rafael/my-blog/script.js''''\\)\")",
-      "WebSearch"
+      "WebSearch",
+      "WebFetch(domain:docs.hitachivantara.com)",
+      "WebFetch(domain:knowledge.hitachivantara.com)",
+      "WebFetch(domain:community.hitachivantara.com)",
+      "WebFetch(domain:download.hitachivantara.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:api.hitachismartcamera.com)",
+      "WebFetch(domain:apitracker.io)",
+      "WebFetch(domain:www.sentrysoftware.com)",
+      "WebFetch(domain:manuals.plus)",
+      "WebFetch(domain:device.report)",
+      "WebFetch(domain:support.continuitysoftware.com)",
+      "WebFetch(domain:itpfdoc.hitachi.co.jp)"
     ]
   }
 }
