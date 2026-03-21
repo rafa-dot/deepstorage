@@ -2481,6 +2481,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const recursosContainer = document.getElementById('recursos-content');
     const conceitosContainer = document.getElementById('conceitos-content');
 
+    initGlobalSearch();
+
     if (homePostsContainer) {
         renderAllPosts(homePostsContainer);
         initSearch(homePostsContainer);
@@ -2525,6 +2527,79 @@ function renderAllPosts(container, filteredPosts) {
             window.location.href = `post.html?id=${sortedPosts[index].id}`;
         });
         item.style.cursor = 'pointer';
+    });
+}
+
+function initGlobalSearch() {
+    const input = document.getElementById('global-search');
+    const dropdown = document.getElementById('search-results-dropdown');
+    if (!input || !dropdown) return;
+
+    input.addEventListener('input', () => {
+        const query = input.value.trim().toLowerCase();
+
+        if (query.length < 2) {
+            dropdown.innerHTML = '';
+            dropdown.classList.remove('active');
+            return;
+        }
+
+        const results = [];
+
+        // Search posts
+        posts.forEach(post => {
+            if (
+                post.title.toLowerCase().includes(query) ||
+                post.excerpt.toLowerCase().includes(query) ||
+                post.content.toLowerCase().includes(query)
+            ) {
+                results.push({ type: 'post', post });
+            }
+        });
+
+        // Search Conceitos
+        if (conceitosContent.toLowerCase().includes(query)) {
+            results.push({ type: 'page', label: 'Conceitos', url: 'conceitos.html' });
+        }
+
+        // Search Recursos
+        if (recursosContent.toLowerCase().includes(query)) {
+            results.push({ type: 'page', label: 'Recursos', url: 'recursos.html' });
+        }
+
+        if (results.length === 0) {
+            dropdown.innerHTML = '<div class="search-no-match">Nenhum resultado encontrado</div>';
+            dropdown.classList.add('active');
+            return;
+        }
+
+        dropdown.innerHTML = results.map(r => {
+            if (r.type === 'post') {
+                return `<a href="post.html?id=${r.post.id}" class="search-result-item">
+                    <span class="search-result-tag">Post</span>
+                    <span class="search-result-title">${r.post.title}</span>
+                </a>`;
+            }
+            return `<a href="${r.url}" class="search-result-item">
+                <span class="search-result-tag">${r.label}</span>
+                <span class="search-result-title">Ver resultado em ${r.label}</span>
+            </a>`;
+        }).join('');
+
+        dropdown.classList.add('active');
+    });
+
+    document.addEventListener('click', e => {
+        if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
+
+    input.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            dropdown.classList.remove('active');
+            input.value = '';
+        }
     });
 }
 
@@ -2646,8 +2721,7 @@ function formatDate(dateString) {
     }
 }
 
-function loadRecursosPage(container) {
-    const recursosContent = `# Top Sites e Recursos para Profissionais de Storage
+const recursosContent = `# Top Sites e Recursos para Profissionais de Storage
 
 Manter-se atualizado no mundo do storage requer acompanhar as fontes certas. Aqui está minha lista curada de recursos essenciais.
 
@@ -2790,6 +2864,7 @@ Manter-se atualizado no mundo do storage requer acompanhar as fontes certas. Aqu
 
 `;
 
+function loadRecursosPage(container) {
     container.innerHTML = marked.parse(recursosContent);
     
     // All links in Recursos are external, so open in new tab
@@ -2799,8 +2874,7 @@ Manter-se atualizado no mundo do storage requer acompanhar as fontes certas. Aqu
     });
 }
 
-function loadConceitosPage(container) {
-    const conceitosContent = `# Conceitos Fundamentais de Armazenamento de Dados
+const conceitosContent = `# Conceitos Fundamentais de Armazenamento de Dados
 
 **Repositório técnico completo** sobre storage enterprise, desde fundamentos até arquiteturas avançadas. Navegue por protocolos modernos (NVMe, FC, iSCSI, S3), estratégias de data protection, disaster recovery e tecnologias de missão crítica utilizadas em ambientes corporativos.
 
@@ -6492,6 +6566,7 @@ Recovery Admin (Break-Glass):
 
 Esta seção cobre os principais conceitos de proteção de dados em ambientes de storage enterprise. Proteção em camadas é fundamental! 🛡️`;
 
+function loadConceitosPage(container) {
     container.innerHTML = marked.parse(conceitosContent);
     
     // Configure links: external open in new tab, internal anchors stay in same page
