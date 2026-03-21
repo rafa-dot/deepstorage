@@ -2483,6 +2483,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (homePostsContainer) {
         renderAllPosts(homePostsContainer);
+        initSearch(homePostsContainer);
         initVisitCounter();
     }
 
@@ -2508,17 +2509,51 @@ function renderLatestPosts(container) {
     });
 }
 
-function renderAllPosts(container) {
+function renderAllPosts(container, filteredPosts) {
     // Sort posts by date (newer first)
-    const sortedPosts = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
-    
+    const sortedPosts = (filteredPosts || [...posts]).sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    if (sortedPosts.length === 0) {
+        container.innerHTML = '<p class="search-no-results">Nenhum post encontrado para essa busca.</p>';
+        return;
+    }
+
     container.innerHTML = sortedPosts.map(post => createPostListItem(post)).join('');
-    
+
     container.querySelectorAll('.post-list-item').forEach((item, index) => {
         item.addEventListener('click', () => {
             window.location.href = `post.html?id=${sortedPosts[index].id}`;
         });
         item.style.cursor = 'pointer';
+    });
+}
+
+function initSearch(container) {
+    const input = document.getElementById('search-input');
+    const countEl = document.getElementById('search-count');
+    if (!input) return;
+
+    input.addEventListener('input', () => {
+        const query = input.value.trim().toLowerCase();
+
+        if (!query) {
+            renderAllPosts(container);
+            countEl.textContent = '';
+            return;
+        }
+
+        const results = posts.filter(post => {
+            return (
+                post.title.toLowerCase().includes(query) ||
+                post.excerpt.toLowerCase().includes(query) ||
+                post.content.toLowerCase().includes(query)
+            );
+        });
+
+        renderAllPosts(container, results);
+        countEl.textContent = results.length === 1
+            ? '1 resultado'
+            : `${results.length} resultados`;
     });
 }
 
