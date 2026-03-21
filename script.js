@@ -2485,7 +2485,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (homePostsContainer) {
         renderAllPosts(homePostsContainer);
-        initSearch(homePostsContainer);
         initVisitCounter();
     }
 
