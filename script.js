@@ -877,6 +877,10 @@ Um arquivo de 100 MB pode estar espalhado em milhares de blocos pelo disco. O si
 
 Quando você cria um snapshot, o que acontece é: o sistema copia esse **índice**, não os dados. O snapshot aponta para os mesmos blocos físicos que o volume original. Por isso ocupa quase zero espaço — ele é apenas uma lista de referências.
 
+<div style="margin: 2rem 0; text-align: center;">
+  <img src="snapshot-diagram.svg" alt="Diagrama mostrando as três fases de um snapshot: antes da criação, após a criação compartilhando os mesmos blocos, e após modificação com Copy-on-Write preservando o bloco antigo" style="max-width: 100%; border-radius: 10px;">
+</div>
+
 \`\`\`
 Antes do snapshot:
 Volume original → [Bloco A] [Bloco B] [Bloco C] [Bloco D]
