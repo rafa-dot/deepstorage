@@ -18,6 +18,9 @@
     <meta name="twitter:description" content="Blog técnico sobre armazenamento de dados corporativo enterprise.">
 
     <link rel="canonical" href="https://www.deepstorage.tech/about.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -26,7 +29,14 @@
     <nav class="navbar" aria-label="Navegação principal">
         <div class="container">
             <p class="logo"><a href="index.html">Storage Tech</a></p>
-            <ul class="nav-links">
+            <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                    <rect x="2" y="5" width="18" height="2" rx="1" fill="currentColor"/>
+                    <rect x="2" y="10" width="18" height="2" rx="1" fill="currentColor"/>
+                    <rect x="2" y="15" width="18" height="2" rx="1" fill="currentColor"/>
+                </svg>
+            </button>
+            <ul class="nav-links" id="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="conceitos.html">Conceitos</a></li>
                 <li><a href="recursos.html">Recursos</a></li>
@@ -84,6 +94,16 @@
 
     <script>
         document.getElementById('copyright-year').textContent = new Date().getFullYear();
+        (function() {
+            var btn = document.querySelector('.nav-toggle');
+            var menu = document.getElementById('nav-menu');
+            if (btn && menu) {
+                btn.addEventListener('click', function() {
+                    var open = menu.classList.toggle('open');
+                    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                });
+            }
+        })();
     </script>
 </body>
 </html>

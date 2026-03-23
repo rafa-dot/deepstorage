@@ -20,6 +20,7 @@ const posts = [
     {
         id: 1,
         title: "Pure Storage FlashArray//C: A Nova Era do All-Flash Acessível",
+        tag: "Pure Storage",
         date: "2026-03-15",
         excerpt: "Pure Storage lança linha FlashArray//C focada em preço competitivo sem comprometer performance. Entenda como isso muda o mercado de storage.",
         content: `# Pure Storage FlashArray//C: A Nova Era do All-Flash Acessível
@@ -62,6 +63,7 @@ O FlashArray//C é posicionado para ambientes que:
     {
         id: 2,
         title: "NetApp ONTAP: Storage Unificado On-Prem e Cloud",
+        tag: "NetApp",
         date: "2026-03-13",
         excerpt: "Conheça o ecossistema NetApp: o sistema operacional ONTAP, as linhas AFF e FAS, data services como SnapMirror e FlexClone, e a extensão para nuvem pública.",
         content: `# NetApp ONTAP: Storage Unificado On-Prem e Cloud
@@ -215,6 +217,7 @@ Serviços gerenciados de NFS/SMB de alta performance nas nuvens públicas, sem g
     {
         id: 12,
         title: "Dell EMC Storage: PowerStore, PowerMax e PowerScale",
+        tag: "Dell Technologies",
         date: "2026-03-20",
         excerpt: "Conheça o portfólio de storage enterprise da Dell Technologies: PowerStore para workloads modernos, PowerMax para missão crítica e PowerScale para scale-out NAS.",
         content: `# Dell EMC Storage: PowerStore, PowerMax e PowerScale
@@ -347,6 +350,7 @@ Plataforma de object storage S3-compatible da Dell para ambientes que precisam d
     {
         id: 13,
         title: "HPE Storage: Alletra, 3PAR, Nimble e a Evolução do Portfólio",
+        tag: "HPE",
         date: "2026-03-19",
         excerpt: "Conheça o portfólio de storage enterprise da HPE: da linha legada 3PAR à plataforma moderna Alletra, passando pelo Nimble Storage e o AIOps do InfoSight.",
         content: `# HPE Storage: Alletra, 3PAR, Nimble e a Evolução do Portfólio
@@ -500,6 +504,7 @@ O **InfoSight** é a plataforma de inteligência operacional da HPE, originalmen
     {
         id: 3,
         title: "NVMe-oF: O Futuro do Storage em Rede",
+        tag: "Protocolos",
         date: "2026-03-05",
         excerpt: "NVMe over Fabrics está revolucionando a performance de storage. Entenda a tecnologia e quais fabricantes já suportam.",
         content: `# NVMe-oF: O Futuro do Storage em Rede
@@ -589,6 +594,7 @@ NVMe-oF deixou de ser tecnologia emergente — os principais fabricantes já tê
     {
         id: 4,
         title: "Hitachi Vantara: Portfólio VSP, HNAS, Ops Center e VSP One",
+        tag: "Hitachi Vantara",
         date: "2026-03-14",
         excerpt: "Visão completa do portfólio de storage enterprise da Hitachi Vantara: todas as linhas VSP (G, F, E, 5000), HNAS, o conjunto de gerenciamento Ops Center e a nova plataforma unificada VSP One.",
         content: `# Hitachi Vantara: Portfólio VSP, HNAS, Ops Center e VSP One
@@ -836,6 +842,7 @@ Toda a linha VSP One é gerenciada pelo **Hitachi Ops Center** — uma única co
     {
         id: 6,
         title: "Snapshots: Como Funciona a Tecnologia por Trás da Proteção de Dados",
+        tag: "Data Protection",
         date: "2026-03-22",
         excerpt: "O que é um snapshot, como ele nasceu, por que ocupa zero espaço no início e como as diferentes técnicas (COW, ROW, CDP) funcionam por dentro. Um guia do zero para entender de verdade.",
         content: `# Snapshots: Como Funciona a Tecnologia por Trás da Proteção de Dados
@@ -1156,6 +1163,7 @@ Snapshots são uma das tecnologias mais versáteis do storage enterprise — rá
     {
         id: 7,
         title: "Replicação de Storage: Síncrona vs Assíncrona vs Near-Sync",
+        tag: "Data Protection",
         date: "2026-02-15",
         excerpt: "Comparativo detalhado entre tecnologias de replicação para DR e alta disponibilidade. Quando usar cada uma?",
         content: `# Replicação de Storage: Síncrona vs Assíncrona vs Near-Sync
@@ -1539,6 +1547,7 @@ Se downtime custa mais que DR, vale o investimento.
     {
         id: 9,
         title: "Huawei Storage: Dorado V6, V7 e OceanStor Pacific",
+        tag: "Huawei",
         date: "2026-03-17",
         excerpt: "Conheça as principais linhas de storage enterprise da Huawei: All-Flash Dorado V6/V7 e o scale-out OceanStor Pacific para big data.",
         content: `# Huawei Storage: Dorado V6, V7 e OceanStor Pacific
@@ -1830,6 +1839,7 @@ Ambientes sem restrições de compliance/geopolítica e com boa cobertura de sup
     {
         id: 10,
         title: "Hitachi Vantara: Storage Unificado, Replicação e Alta Disponibilidade",
+        tag: "Hitachi Vantara",
         date: "2026-03-18",
         excerpt: "O VSP One unifica block, file e object storage em um único sistema operacional. Conheça os modelos, as tecnologias de replicação HyperMetro e TrueCopy, e quando escolher a plataforma da Hitachi Vantara.",
         content: `# Hitachi VSP One: A Plataforma de Storage Unificada
@@ -2129,6 +2139,7 @@ Se o seu ambiente exige **máxima disponibilidade**, **DR ativo-ativo** e **cons
     {
         id: 11,
         title: "Hitachi Content Platform (HCP): Object Storage com Compliance Enterprise",
+        tag: "Hitachi Vantara",
         date: "2026-03-16",
         excerpt: "O HCP é a plataforma de object storage da Hitachi focada em compliance rigoroso, WORM, retenção de longo prazo e metadata enriquecido. Saiba como funciona e quando escolhê-lo.",
         content: `# Hitachi Content Platform (HCP): Object Storage com Compliance Enterprise
@@ -2333,6 +2344,7 @@ Se o seu ambiente tem **obrigações regulatórias reais** ou **dados que simple
     {
         id: 14,
         title: "A História do Storage: De Cartões Perfurados à NVMe",
+        tag: "História",
         date: "2026-03-21",
         excerpt: "Como chegamos dos armários de fita magnética dos anos 50 ao all-flash atual? Uma viagem pela história do armazenamento de dados — das origens até os dias de hoje.",
         content: `# A História do Storage: De Cartões Perfurados à NVMe
@@ -2624,25 +2636,33 @@ function initSearch(container) {
 }
 
 function createPostCard(post) {
+    const tagHtml = post.tag ? `<span class="post-tag">${post.tag}</span>` : '';
     return `
         <div class="post-card">
             <div class="post-card-content">
                 <h3>${post.title}</h3>
-                <div class="post-date">${formatDate(post.date)}</div>
+                <div class="post-meta-row">
+                    <span class="post-date">${formatDate(post.date)}</span>
+                    ${tagHtml}
+                </div>
                 <p class="post-excerpt">${post.excerpt}</p>
-                <a href="post.html?id=${post.id}" class="read-more" aria-label="Ler mais sobre ${post.title}">Ler mais →</a>
+                <a href="post.html?id=${post.id}" class="read-more" aria-label="Ler mais sobre ${post.title}">Ler mais</a>
             </div>
         </div>
     `;
 }
 
 function createPostListItem(post) {
+    const tagHtml = post.tag ? `<span class="post-tag">${post.tag}</span>` : '';
     return `
         <div class="post-list-item">
             <h3>${post.title}</h3>
-            <div class="post-date">${formatDate(post.date)}</div>
+            <div class="post-meta-row">
+                <span class="post-date">${formatDate(post.date)}</span>
+                ${tagHtml}
+            </div>
             <p class="post-excerpt">${post.excerpt}</p>
-            <a href="post.html?id=${post.id}" class="read-more" aria-label="Ler mais sobre ${post.title}">Ler mais →</a>
+            <a href="post.html?id=${post.id}" class="read-more" aria-label="Ler mais sobre ${post.title}">Ler mais</a>
         </div>
     `;
 }
@@ -2689,9 +2709,10 @@ function loadSinglePost() {
     const canonical = document.getElementById('canonical-link');
     if (canonical) canonical.setAttribute('href', `https://www.deepstorage.tech/post.html?id=${post.id}`);
 
+    const tagHtmlHeader = post.tag ? `<span class="post-tag">${post.tag}</span>` : '';
     postHeader.innerHTML = `
         <h1>${post.title}</h1>
-        <div class="post-meta">${formatDate(post.date)}</div>
+        <div class="post-meta"><span class="post-date">${formatDate(post.date)}</span>${tagHtmlHeader}</div>
     `;
 
     const contentWithoutTitle = post.content.replace(/^#\s+.+\n/, '');
