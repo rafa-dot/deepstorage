@@ -4729,26 +4729,44 @@ Controle de **quem vê quem** na SAN.
 
 <h3 id="bloco-vs-arquivo-vs-objeto">Bloco vs. Arquivo vs. Objeto</h3>
 
+Existem três formas fundamentais de expor armazenamento para quem vai consumi-lo. A escolha impacta diretamente protocolos, performance e tipo de aplicação suportada.
+
 #### Block Storage
-- **Unidade**: Blocos (512B, 4KB, 8KB)
-- **Acesso**: Direto (raw disk)
-- **Protocolo**: FC, iSCSI, FCoE
-- **Uso**: Databases, VMs, boot volumes
-- **Exemplo**: LUN em uma SAN
+
+O storage entrega **blocos brutos de dados** — sem estrutura, sem hierarquia. O sistema operacional do servidor recebe o volume como se fosse um disco físico diretamente conectado e é ele quem formata e gerencia o filesystem.
+
+- **O servidor vê**: um disco (\`/dev/sdb\` no Linux, ou uma nova letra de drive no Windows)
+- **Quem gerencia o filesystem**: o próprio servidor (NTFS, ext4, XFS etc.)
+- **Protocolos**: Fibre Channel, iSCSI, NVMe-oF
+- **Ideal para**: bancos de dados (Oracle, SQL Server), máquinas virtuais, volumes de boot
 
 #### File Storage
-- **Unidade**: Arquivos e diretórios
-- **Acesso**: Filesystem (NFS, SMB)
-- **Protocolo**: NFS, CIFS/SMB
-- **Uso**: Shares, home directories
-- **Exemplo**: NAS share
+
+O storage já entrega os dados organizados em **arquivos e diretórios**, com filesystem gerenciado pelo próprio NAS. O cliente monta o compartilhamento e acessa arquivos diretamente, sem se preocupar com blocos.
+
+- **O servidor vê**: uma pasta remota montada (\`/mnt/projetos\` no Linux ou \`\\\\nas\\projetos\` no Windows)
+- **Quem gerencia o filesystem**: o NAS
+- **Protocolos**: NFS (Linux/Unix), CIFS/SMB (Windows)
+- **Ideal para**: home directories, shares corporativos, dados compartilhados entre múltiplos servidores
 
 #### Object Storage
-- **Unidade**: Objetos (arquivo + metadata)
-- **Acesso**: API HTTP (S3, Swift)
-- **Protocolo**: REST API
-- **Uso**: Backup, archive, cloud storage
-- **Exemplo**: AWS S3, MinIO
+
+Os dados são armazenados como **objetos** — cada objeto contém o conteúdo do arquivo mais um conjunto arbitrário de metadados e um identificador único. Não há hierarquia de diretórios: o acesso é feito via API HTTP.
+
+- **O cliente vê**: uma API REST (PUT/GET/DELETE por chave)
+- **Quem gerencia a estrutura**: a aplicação que consome a API
+- **Protocolos**: S3 (padrão de mercado), Swift
+- **Ideal para**: backup, arquivamento, dados não estruturados em escala, conteúdo estático (imagens, logs, vídeos)
+
+#### Comparativo
+
+| | Block | File | Object |
+|---|---|---|---|
+| **Unidade** | Bloco (512B–4KB) | Arquivo + diretório | Objeto + metadata |
+| **Filesystem** | No servidor | No NAS | Sem filesystem |
+| **Acesso** | Protocolo SAN | Protocolo NAS | API HTTP |
+| **Escala** | Alta performance | Compartilhamento | Capacidade massiva |
+| **Latência** | Muito baixa | Baixa–média | Média |
 
 <h3 id="setores-e-blocos">Setores e Blocos</h3>
 
