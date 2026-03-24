@@ -4822,13 +4822,13 @@ Controle de **qual servidor** vê **qual LUN**.
 Um **share** (ou export) é um diretório no storage disponibilizado para acesso remoto via protocolo de arquivo. O mesmo volume físico pode ser exposto via NFS para clientes Linux e via CIFS/SMB para clientes Windows — isso é chamado de **acesso multiprotocolo**.
 
 #### Características NFS (clientes Linux/Unix)
-- Configurado como export: `/vol/dados/projetos`
-- Mount no cliente: `mount -t nfs storage:/vol/dados/projetos /mnt/projetos`
+- Configurado como export: \`/vol/dados/projetos\`
+- Mount no cliente: \`mount -t nfs storage:/vol/dados/projetos /mnt/projetos\`
 - Permissões baseadas em **UID/GID Unix**
-- Controle de acesso via `/etc/exports` ou equivalente no NAS
+- Controle de acesso via \`/etc/exports\` ou equivalente no NAS
 
 #### Características SMB/CIFS (clientes Windows)
-- Share name: `\\storage\projetos`
+- Share name: \`\\\\storage\\projetos\`
 - Permissões via **ACLs NTFS** (mais granulares) + Share-level permissions
 - Autenticação integrada ao Active Directory via Kerberos
 
