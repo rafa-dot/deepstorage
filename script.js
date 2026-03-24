@@ -2878,7 +2878,7 @@ function loadRecursosPage(container) {
 
 const conceitosContent = `# Conceitos Fundamentais de Armazenamento de Dados
 
-**Repositório técnico completo** sobre storage enterprise, desde fundamentos até arquiteturas avançadas. Navegue por protocolos modernos (NVMe, FC, iSCSI, S3), estratégias de data protection, disaster recovery e tecnologias de missão crítica utilizadas em ambientes corporativos.
+**Repositório técnico completo** sobre storage enterprise, desde fundamentos até arquiteturas avançadas. Navegue por protocolos de bloco (FC, iSCSI, FCoE, FCIP, NVMe-oF), arquivo (NFS, pNFS, CIFS/SMB) e objeto (S3), além de tecnologias de interconexão (RDMA, RoCE, InfiniBand, iWARP, FTP), estratégias de data protection, disaster recovery e arquiteturas de missão crítica utilizadas em ambientes corporativos.
 
 ---
 
