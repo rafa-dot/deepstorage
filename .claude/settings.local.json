@@ -21,7 +21,16 @@
       "Bash(python3:*)",
       "Bash(find /Users/rafael/.claude/plugins -name ui-ux* -o -name search.py)",
       "Bash(ls:*)",
-      "Bash(grep -v \"^[0-9]*:.*title\\\\|^[0-9]*:.*excerpt\\\\|^[0-9]*:.*content.*\\\\`\")"
+      "Bash(grep -v \"^[0-9]*:.*title\\\\|^[0-9]*:.*excerpt\\\\|^[0-9]*:.*content.*\\\\`\")",
+      "WebFetch(domain:www.storagereview.com)",
+      "WebFetch(domain:blocksandfiles.com)",
+      "WebFetch(domain:www.computerweekly.com)",
+      "WebFetch(domain:reddit.com)",
+      "WebFetch(domain:community.netapp.com)",
+      "WebFetch(domain:www.dell.com)",
+      "WebFetch(domain:vexpert.vmware.com)",
+      "WebFetch(domain:www.snia.org)",
+      "WebFetch(domain:storagenewsletter.com)"
     ]
   }
 }

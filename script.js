@@ -2749,16 +2749,6 @@ Manter-se atualizado no mundo do storage requer acompanhar as fontes certas. Aqu
 - Análises de movimentações corporativas
 - Cobertura de todas fabricantes
 
-### [The Register - Storage](https://www.theregister.com/storage/)
-- Notícias com tom crítico
-- Análises de negócios
-- Cobertura global
-
-### [Computer Weekly Storage](https://www.computerweekly.com/storage/)
-- Artigos técnicos aprofundados
-- Estudos de caso
-- Tendências de mercado
-
 ## Comunidades e Fóruns
 
 ### [Reddit r/storage](https://reddit.com/r/storage)
