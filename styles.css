@@ -1347,6 +1347,405 @@ footer {
 }
 
 /* =====================================================
+   RECURSOS PAGE
+   ===================================================== */
+.recursos-page {
+    padding-top: var(--sp-8);
+    padding-bottom: var(--sp-16);
+}
+
+.recursos-page-header {
+    margin-bottom: var(--sp-10);
+}
+
+.recursos-page-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: var(--sp-2);
+}
+
+.recursos-page-header p {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    max-width: 560px;
+    line-height: 1.6;
+}
+
+/* Section */
+.recursos-section {
+    margin-bottom: var(--sp-12);
+}
+
+.recursos-section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-5);
+    padding-bottom: var(--sp-3);
+    border-bottom: 1px solid var(--border);
+}
+
+.recursos-section-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.recursos-section-header h2 {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-subtle);
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
+.recursos-section-count {
+    margin-left: auto;
+    font-size: 0.6875rem;
+    color: var(--text-subtle);
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: var(--r-pill);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Generic resource grid */
+.recursos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--sp-3);
+}
+
+.recursos-grid-wide {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+/* Resource card — link card */
+.recurso-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    padding: var(--sp-4);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    text-decoration: none;
+    transition: transform var(--t), border-color var(--t-md), box-shadow var(--t-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.recurso-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--primary);
+    opacity: 0;
+    transition: opacity var(--t);
+}
+
+.recurso-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-accent);
+    box-shadow: 0 6px 20px rgba(0, 255, 159, 0.07);
+    color: inherit;
+    text-decoration: none;
+}
+
+.recurso-card:hover::before {
+    opacity: 1;
+}
+
+.recurso-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--sp-2);
+}
+
+.recurso-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+    transition: color var(--t);
+}
+
+.recurso-card:hover .recurso-name {
+    color: var(--primary);
+}
+
+.recurso-ext-icon {
+    width: 13px;
+    height: 13px;
+    color: var(--text-subtle);
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: color var(--t);
+}
+
+.recurso-card:hover .recurso-ext-icon {
+    color: var(--primary);
+}
+
+.recurso-desc {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Vendor card — static container with sub-links */
+.recurso-vendor-card {
+    padding: var(--sp-4);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    transition: border-color var(--t-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.recurso-vendor-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--primary);
+    opacity: 0;
+    transition: opacity var(--t);
+}
+
+.recurso-vendor-card:hover {
+    border-color: var(--border-accent);
+}
+
+.recurso-vendor-card:hover::before {
+    opacity: 1;
+}
+
+.recurso-vendor-name {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: var(--sp-3);
+}
+
+.recurso-vendor-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recurso-vendor-links li a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 3px 0;
+    transition: color var(--t);
+}
+
+.recurso-vendor-links li a::before {
+    content: '→';
+    color: var(--primary);
+    opacity: 0.45;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+.recurso-vendor-links li a:hover {
+    color: var(--primary);
+}
+
+/* Certification card */
+.recurso-cert-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    padding: var(--sp-4);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    text-decoration: none;
+    transition: transform var(--t), border-color var(--t-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.recurso-cert-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--secondary);
+    opacity: 0;
+    transition: opacity var(--t);
+}
+
+.recurso-cert-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 217, 255, 0.2);
+    color: inherit;
+    text-decoration: none;
+}
+
+.recurso-cert-card:hover::before {
+    opacity: 1;
+}
+
+.recurso-cert-code {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.recurso-cert-name {
+    font-size: 0.8125rem;
+    color: var(--text);
+    line-height: 1.4;
+    font-weight: 500;
+    flex: 1;
+}
+
+.recurso-cert-vendor {
+    font-size: 0.6875rem;
+    color: var(--text-subtle);
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: var(--r-pill);
+    display: inline-block;
+    width: fit-content;
+    margin-top: auto;
+}
+
+/* YouTube grid */
+.recursos-yt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--sp-3);
+}
+
+.recurso-yt-card {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    padding: var(--sp-3) var(--sp-4);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    text-decoration: none;
+    transition: transform var(--t), border-color var(--t-md);
+}
+
+.recurso-yt-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-accent);
+    color: inherit;
+    text-decoration: none;
+}
+
+.recurso-yt-dot {
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 60, 60, 0.1);
+    border-radius: var(--r-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.recurso-yt-dot svg {
+    width: 14px;
+    height: 14px;
+    color: #ff5555;
+}
+
+.recurso-yt-info {
+    min-width: 0;
+}
+
+.recurso-yt-name {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text);
+    transition: color var(--t);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.recurso-yt-card:hover .recurso-yt-name {
+    color: var(--primary);
+}
+
+.recurso-yt-type {
+    font-size: 0.7rem;
+    color: var(--text-subtle);
+    margin-top: 2px;
+}
+
+/* Social pills */
+.recursos-social-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+}
+
+.recurso-social-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: var(--sp-2) var(--sp-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-pill);
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: border-color var(--t), color var(--t), background var(--t);
+    white-space: nowrap;
+}
+
+.recurso-social-pill:hover {
+    border-color: var(--border-accent);
+    color: var(--primary);
+    background: var(--primary-dim);
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .recursos-grid,
+    .recursos-grid-wide {
+        grid-template-columns: 1fr;
+    }
+
+    .recursos-yt-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .recursos-page-header h1 {
+        font-size: 1.375rem;
+    }
+}
+
+/* =====================================================
    REDUCED MOTION
    ===================================================== */
 @media (prefers-reduced-motion: reduce) {

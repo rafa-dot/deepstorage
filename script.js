@@ -2698,147 +2698,188 @@ function formatDate(dateString) {
     }
 }
 
-const recursosContent = `# Top Sites e Recursos para Profissionais de Storage
-
-Manter-se atualizado no mundo do storage requer acompanhar as fontes certas. Aqui está minha lista curada de recursos essenciais.
-
-## Sites de Notícias e Reviews
-
-### [StorageReview.com](https://www.storagereview.com/)
-- Reviews técnicos profundos
-- Benchmarks independentes
-- Cobertura enterprise e consumer
-
-### [Blocks and Files](https://blocksandfiles.com/)
-- Notícias diárias do mercado
-- Análises de movimentações corporativas
-- Cobertura de todas fabricantes
-
-## Comunidades e Fóruns
-
-### [Reddit r/storage](https://reddit.com/r/storage)
-- Comunidade ativa
-- Discussões técnicas
-- Troubleshooting colaborativo
-
-### [NetApp Community](https://community.netapp.com/)
-- Fórum oficial NetApp
-- Documentação extensiva
-- Suporte entre pares
-
-### [Dell Community](https://www.dell.com/community/Storage/ct-p/Storage)
-- Fórum oficial Dell EMC
-- KBs e troubleshooting
-- Anúncios de produtos
-
-### [vExpert Community](https://vexpert.vmware.com/)
-- Foco em virtualização
-- Storage para VMware
-- Blogs de especialistas
-
-## Fabricantes - Links Diretos
-
-### NetApp
-- [NetApp.com](https://www.netapp.com/)
-- [NetApp KB](https://kb.netapp.com/)
-- [NetApp University](https://learningcenter.netapp.com/)
-
-### Dell EMC
-- [Dell Storage](https://www.dell.com/en-us/dt/storage/)
-- [Dell Support](https://www.dell.com/support/)
-- [Dell Education](https://education.dellemc.com/)
-
-### Pure Storage
-- [PureStorage.com](https://www.purestorage.com/)
-- [Pure1 Meta](https://pure1.purestorage.com/)
-- [Pure Storage Blog](https://blog.purestorage.com/)
-
-### IBM Storage
-- [IBM Storage](https://www.ibm.com/storage)
-- [IBM Docs](https://www.ibm.com/docs/en/)
-- [IBM Community](https://community.ibm.com/community/user/storage/)
-
-### Hitachi Vantara
-- [Hitachi Vantara](https://www.hitachivantara.com/)
-- [Knowledge Center](https://knowledge.hitachivantara.com/)
-
-### HPE Storage
-- [HPE Storage](https://www.hpe.com/us/en/storage.html)
-- [HPE Alletra](https://www.hpe.com/us/en/storage/alletra.html)
-- [HPE InfoSight](https://www.hpe.com/us/en/storage/infosight.html)
-- [HPE Education Services](https://education.hpe.com/)
-
-### Huawei Storage
-- [Huawei Enterprise](https://e.huawei.com/en/products/storage)
-- [Support Documentation](https://support.huawei.com/)
-
-## Certificações e Treinamento
-
-### [SNIA (Storage Networking Industry Association)](https://www.snia.org/)
-- **SCSP**: Storage Certified Storage Professional
-- Webinars gratuitos
-- White papers técnicos
-
-### Certificações por Fabricante
-
-| Certificação | Descrição | Portal |
-|---|---|---|
-| **NetApp NCDA** | NetApp Certified Data Administrator | [learningcenter.netapp.com](https://learningcenter.netapp.com/) |
-| **NetApp NCIE** | NetApp Certified Implementation Engineer | [learningcenter.netapp.com](https://learningcenter.netapp.com/) |
-| **Dell DCS-SA** | Dell Certified Specialist - Storage Administrator | [education.dell.com](https://education.dell.com/) |
-| **Pure Storage Certified Architect** | Certificação de arquitetura e implementação | [training.purestorage.com](https://training.purestorage.com/) |
-| **Hitachi HQS** | Hitachi Qualified Specialist - Storage | [knowledge.hitachivantara.com](https://knowledge.hitachivantara.com/) |
-| **HPE ASE - Storage Solutions** | HPE Accredited Solutions Expert - Storage | [education.hpe.com](https://education.hpe.com/) |
-| **HCIP-Storage (Huawei)** | Huawei Certified ICT Professional - Storage | [e.huawei.com/en/talent](https://e.huawei.com/en/talent/#/cert/product-details?certifiedProductNode=6&certi=8) |
-
-## Blogs Independentes
-
-- [StorageGaga](https://storagegaga.wordpress.com/)
-- [J Metz Blog](https://jmetz.com/)
-- [Storage Soup](https://storagesoup.com/)
-
-## Twitter/X - Quem Seguir
-
-- [@PureStorage](https://x.com/PureStorage)
-- [@NetApp](https://x.com/NetApp)
-- [@DellEMC](https://x.com/DellEMC)
-- [@HitachiVantara](https://x.com/HitachiVantara)
-- [@storageanarchy](https://x.com/storageanarchy)
-- [@jpwarren](https://x.com/jpwarren)
-
-## Newsletters
-
-### [Storage Newsletter](https://storagenewsletter.com/)
-- Semanal
-- Resume das principais notícias
-- Análises de mercado
-
-## YouTube Channels
-
-**Fabricantes:**
-- [**Pure Storage**](https://www.youtube.com/@PureStorage)
-- [**NetApp**](https://www.youtube.com/@netapp)
-- [**Dell Technologies**](https://www.youtube.com/@DellTechnologies)
-- [**IBM Technology**](https://www.youtube.com/@IBMTechnology)
-- [**Hitachi Vantara**](https://www.youtube.com/c/hitachi-vantara)
-
-**Backup e Proteção:**
-- [**Commvault**](https://www.youtube.com/@commvaultsystems)
-
-**Comunidade e Independentes:**
-- [**SNIA**](https://www.youtube.com/channel/UCUMgmcine5M4aKNI8XA5vFw)
-- [**ServeTheHome**](https://www.youtube.com/@ServeTheHome)
-
-`;
+// Plain text used by global search
+const recursosContent = 'StorageReview Blocks Files Reddit storage NetApp Community Dell Community vExpert StorageGaga J Metz Storage Soup SNIA SCSP NCDA NCIE DCS-SA Pure Storage Certified Architect HQS HPE ASE HCIP Storage Newsletter Commvault ServeTheHome IBM Technology Hitachi Vantara Dell Technologies YouTube certificações treinamento fabricantes noticias comunidades blogs';
 
 function loadRecursosPage(container) {
-    container.innerHTML = marked.parse(recursosContent);
-    
-    // All links in Recursos are external, so open in new tab
-    container.querySelectorAll('a').forEach(link => {
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener noreferrer');
-    });
+    container.innerHTML = buildRecursosHTML();
+}
+
+function buildRecursosHTML() {
+    var extIcon = '<svg class="recurso-ext-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>';
+
+    function sectionHeader(title, iconPath, count) {
+        var countHtml = count ? '<span class="recursos-section-count">' + count + '</span>' : '';
+        return '<div class="recursos-section-header">' +
+            '<svg class="recursos-section-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">' + iconPath + '</svg>' +
+            '<h2>' + title + '</h2>' +
+            countHtml +
+            '</div>';
+    }
+
+    function card(url, name, desc) {
+        return '<a href="' + url + '" class="recurso-card" target="_blank" rel="noopener noreferrer">' +
+            '<div class="recurso-card-top"><span class="recurso-name">' + name + '</span>' + extIcon + '</div>' +
+            '<p class="recurso-desc">' + desc + '</p>' +
+            '</a>';
+    }
+
+    function vendorCard(name, links) {
+        var linksHtml = links.map(function(l) {
+            return '<li><a href="' + l.url + '" target="_blank" rel="noopener noreferrer">' + l.label + '</a></li>';
+        }).join('');
+        return '<div class="recurso-vendor-card"><p class="recurso-vendor-name">' + name + '</p>' +
+            '<ul class="recurso-vendor-links">' + linksHtml + '</ul></div>';
+    }
+
+    function certCard(url, code, name, vendor) {
+        return '<a href="' + url + '" class="recurso-cert-card" target="_blank" rel="noopener noreferrer">' +
+            '<span class="recurso-cert-code">' + code + '</span>' +
+            '<span class="recurso-cert-name">' + name + '</span>' +
+            '<span class="recurso-cert-vendor">' + vendor + '</span>' +
+            '</a>';
+    }
+
+    function ytCard(url, name, type) {
+        var playIcon = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/></svg>';
+        return '<a href="' + url + '" class="recurso-yt-card" target="_blank" rel="noopener noreferrer">' +
+            '<div class="recurso-yt-dot">' + playIcon + '</div>' +
+            '<div class="recurso-yt-info"><p class="recurso-yt-name">' + name + '</p><p class="recurso-yt-type">' + type + '</p></div>' +
+            '</a>';
+    }
+
+    function pill(url, handle) {
+        return '<a href="' + url + '" class="recurso-social-pill" target="_blank" rel="noopener noreferrer">' + handle + '</a>';
+    }
+
+    // ── Notícias & Reviews ──────────────────────────────────────
+    var noticiasIcon = '<path stroke-linecap="round" stroke-linejoin="round" d="M12 7V3H2v18h20V7H12zM6 15h6m-6-3h6M6 9h3"/>';
+    var noticias = '<section class="recursos-section">' +
+        sectionHeader('Notícias &amp; Reviews', noticiasIcon, '2') +
+        '<div class="recursos-grid">' +
+        card('https://www.storagereview.com/', 'StorageReview.com', 'Reviews técnicos profundos com benchmarks independentes para enterprise e consumer.') +
+        card('https://blocksandfiles.com/', 'Blocks &amp; Files', 'Notícias diárias do mercado storage: aquisições, lançamentos e análises corporativas.') +
+        '</div></section>';
+
+    // ── Comunidades ─────────────────────────────────────────────
+    var comunidadesIcon = '<path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>';
+    var comunidades = '<section class="recursos-section">' +
+        sectionHeader('Comunidades', comunidadesIcon, '4') +
+        '<div class="recursos-grid">' +
+        card('https://reddit.com/r/storage', 'Reddit r/storage', 'Comunidade ativa para dúvidas técnicas, troubleshooting e discussões sobre storage.') +
+        card('https://community.netapp.com/', 'NetApp Community', 'Fórum oficial NetApp com documentação, KBs e suporte entre pares.') +
+        card('https://www.dell.com/community/Storage/ct-p/Storage', 'Dell Community', 'Fórum oficial Dell com KBs, troubleshooting e anúncios de produtos.') +
+        card('https://vexpert.vmware.com/', 'vExpert Community', 'Especialistas VMware com foco em virtualização e storage para ambientes vSphere.') +
+        '</div></section>';
+
+    // ── Fabricantes ─────────────────────────────────────────────
+    var fabricantesIcon = '<path stroke-linecap="round" stroke-linejoin="round" d="M5 12H3l9-9 9 9h-2M5 12v7a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-7"/>';
+    var fabricantes = '<section class="recursos-section">' +
+        sectionHeader('Fabricantes', fabricantesIcon, '7') +
+        '<div class="recursos-grid recursos-grid-wide">' +
+        vendorCard('NetApp', [
+            { url: 'https://www.netapp.com/', label: 'netapp.com' },
+            { url: 'https://kb.netapp.com/', label: 'Knowledge Base' },
+            { url: 'https://learningcenter.netapp.com/', label: 'NetApp University' }
+        ]) +
+        vendorCard('Dell Technologies', [
+            { url: 'https://www.dell.com/en-us/dt/storage/', label: 'Dell Storage' },
+            { url: 'https://www.dell.com/support/', label: 'Suporte &amp; Docs' },
+            { url: 'https://education.dellemc.com/', label: 'Dell Education' }
+        ]) +
+        vendorCard('Pure Storage', [
+            { url: 'https://www.purestorage.com/', label: 'purestorage.com' },
+            { url: 'https://pure1.purestorage.com/', label: 'Pure1 (portal)' },
+            { url: 'https://blog.purestorage.com/', label: 'Pure Storage Blog' }
+        ]) +
+        vendorCard('IBM Storage', [
+            { url: 'https://www.ibm.com/storage', label: 'ibm.com/storage' },
+            { url: 'https://www.ibm.com/docs/en/', label: 'IBM Docs' },
+            { url: 'https://community.ibm.com/community/user/storage/', label: 'IBM Community' }
+        ]) +
+        vendorCard('Hitachi Vantara', [
+            { url: 'https://www.hitachivantara.com/', label: 'hitachivantara.com' },
+            { url: 'https://knowledge.hitachivantara.com/', label: 'Knowledge Center' }
+        ]) +
+        vendorCard('HPE Storage', [
+            { url: 'https://www.hpe.com/us/en/storage.html', label: 'HPE Storage' },
+            { url: 'https://www.hpe.com/us/en/storage/alletra.html', label: 'HPE Alletra' },
+            { url: 'https://education.hpe.com/', label: 'HPE Education' }
+        ]) +
+        vendorCard('Huawei Enterprise', [
+            { url: 'https://e.huawei.com/en/products/storage', label: 'OceanStor &amp; Dorado' },
+            { url: 'https://support.huawei.com/', label: 'Documentação de suporte' }
+        ]) +
+        '</div></section>';
+
+    // ── Certificações ────────────────────────────────────────────
+    var certIcon = '<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/>';
+    var certs = '<section class="recursos-section">' +
+        sectionHeader('Certificações', certIcon, '8') +
+        '<div class="recursos-grid recursos-grid-wide">' +
+        certCard('https://www.snia.org/education/storage-networking-certification', 'SNIA SCSP', 'Storage Networking Industry Association — certificação vendor-neutral', 'SNIA') +
+        certCard('https://learningcenter.netapp.com/', 'NCDA', 'NetApp Certified Data Administrator', 'NetApp') +
+        certCard('https://learningcenter.netapp.com/', 'NCIE', 'NetApp Certified Implementation Engineer', 'NetApp') +
+        certCard('https://education.dell.com/', 'DCS-SA', 'Dell Certified Specialist — Storage Administrator', 'Dell EMC') +
+        certCard('https://training.purestorage.com/', 'PSCA', 'Pure Storage Certified Architect', 'Pure Storage') +
+        certCard('https://knowledge.hitachivantara.com/', 'HQS', 'Hitachi Qualified Specialist — Storage', 'Hitachi Vantara') +
+        certCard('https://education.hpe.com/', 'HPE ASE', 'HPE Accredited Solutions Expert — Storage Solutions', 'HPE') +
+        certCard('https://e.huawei.com/en/talent/', 'HCIP-Storage', 'Huawei Certified ICT Professional — Storage', 'Huawei') +
+        '</div></section>';
+
+    // ── Blogs Independentes ──────────────────────────────────────
+    var blogIcon = '<path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>';
+    var blogs = '<section class="recursos-section">' +
+        sectionHeader('Blogs Independentes', blogIcon, '3') +
+        '<div class="recursos-grid">' +
+        card('https://storagegaga.wordpress.com/', 'StorageGaga', 'Blog técnico independente com análises de produtos e tendências de mercado.') +
+        card('https://jmetz.com/', 'J Metz Blog', 'Blog de John Metz sobre NVMe, FC e standards de storage enterprise.') +
+        card('https://storagesoup.com/', 'Storage Soup', 'Cobertura independente do setor de storage e infraestrutura de dados.') +
+        '</div></section>';
+
+    // ── YouTube ──────────────────────────────────────────────────
+    var ytIcon = '<path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/>';
+    var youtube = '<section class="recursos-section">' +
+        sectionHeader('YouTube', ytIcon, '8') +
+        '<div class="recursos-yt-grid">' +
+        ytCard('https://www.youtube.com/@PureStorage', 'Pure Storage', 'Fabricante') +
+        ytCard('https://www.youtube.com/@netapp', 'NetApp', 'Fabricante') +
+        ytCard('https://www.youtube.com/@DellTechnologies', 'Dell Technologies', 'Fabricante') +
+        ytCard('https://www.youtube.com/@IBMTechnology', 'IBM Technology', 'Fabricante') +
+        ytCard('https://www.youtube.com/c/hitachi-vantara', 'Hitachi Vantara', 'Fabricante') +
+        ytCard('https://www.youtube.com/@commvaultsystems', 'Commvault', 'Backup &amp; Proteção') +
+        ytCard('https://www.youtube.com/channel/UCUMgmcine5M4aKNI8XA5vFw', 'SNIA', 'Associação / Standards') +
+        ytCard('https://www.youtube.com/@ServeTheHome', 'ServeTheHome', 'Independente') +
+        '</div></section>';
+
+    // ── Newsletter ───────────────────────────────────────────────
+    var mailIcon = '<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>';
+    var newsletter = '<section class="recursos-section">' +
+        sectionHeader('Newsletter', mailIcon, '1') +
+        '<div class="recursos-grid">' +
+        card('https://storagenewsletter.com/', 'Storage Newsletter', 'Resumo semanal das principais notícias, análises de mercado e movimentações corporativas.') +
+        '</div></section>';
+
+    // ── Twitter / X ──────────────────────────────────────────────
+    var twitterIcon = '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>';
+    var social = '<section class="recursos-section">' +
+        sectionHeader('Twitter / X', twitterIcon, '6') +
+        '<div class="recursos-social-grid">' +
+        pill('https://x.com/PureStorage', '@PureStorage') +
+        pill('https://x.com/NetApp', '@NetApp') +
+        pill('https://x.com/DellEMC', '@DellEMC') +
+        pill('https://x.com/HitachiVantara', '@HitachiVantara') +
+        pill('https://x.com/storageanarchy', '@storageanarchy') +
+        pill('https://x.com/jpwarren', '@jpwarren') +
+        '</div></section>';
+
+    return '<div class="recursos-page">' +
+        '<div class="recursos-page-header">' +
+        '<h1>Recursos de Storage</h1>' +
+        '<p>Lista curada de fontes, comunidades, fabricantes e certificações para profissionais de storage enterprise.</p>' +
+        '</div>' +
+        noticias + comunidades + fabricantes + certs + blogs + youtube + newsletter + social +
+        '</div>';
 }
 
 const conceitosContent = `# Conceitos Fundamentais de Armazenamento de Dados
