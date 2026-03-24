@@ -4669,8 +4669,8 @@ Rede **dedicada** que conecta servidores a dispositivos de storage em **nível d
 ### Componentes de uma SAN
 
 #### 1. Storage Arrays
-- Arrays enterprise (NetApp, Pure, Dell)
-- Apresentam LUNs
+- Arrays enterprise de múltiplos fabricantes (midrange e high-end)
+- Apresentam LUNs aos servidores via FC, iSCSI ou NVMe-oF
 
 #### 2. Switches SAN
 - **Brocade** (líder de mercado)
