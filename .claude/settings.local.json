@@ -20,7 +20,8 @@
       "WebFetch(domain:itpfdoc.hitachi.co.jp)",
       "Bash(python3:*)",
       "Bash(find /Users/rafael/.claude/plugins -name ui-ux* -o -name search.py)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(grep -v \"^[0-9]*:.*title\\\\|^[0-9]*:.*excerpt\\\\|^[0-9]*:.*content.*\\\\`\")"
     ]
   }
 }

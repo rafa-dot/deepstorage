@@ -2929,6 +2929,7 @@ const conceitosContent = `# Conceitos Fundamentais de Armazenamento de Dados
   - [WWN - World Wide Name](#wwn---world-wide-name)
   - [LUN - Logical Unit Number](#lun---logical-unit-number)
   - [Shares (Compartilhamentos)](#shares-compartilhamentos)
+    - [Acesso Multiprotocolo — NFS + CIFS no Mesmo Share](#acesso-multiprotocolo--nfs--cifs-no-mesmo-share)
 
 ### Otimização e Performance
 - [Técnicas de Otimização](#técnicas-de-otimização)
@@ -3687,23 +3688,44 @@ No **Files Layout**, cada arquivo tem seus dados striped entre múltiplos Data S
 <h3 id="cifssmb---server-message-block">CIFS/SMB - Server Message Block</h3>
 
 #### O Que É?
-Protocolo de compartilhamento de arquivos **Windows**.
 
-#### Versões
-- **SMB 1.0**: Legado (inseguro, deprecado)
-- **SMB 2.0/2.1**: Windows 7/2008
-- **SMB 3.0**: Windows 8/2012 (encryption, multichannel)
-- **SMB 3.1.1**: Windows 10/2016 (pre-auth integrity)
+**SMB (Server Message Block)** é o protocolo de compartilhamento de arquivos do ecossistema Windows, mas sua história começa antes disso.
 
-#### Características
-- **Multichannel**: Usa múltiplas NICs automaticamente
-- **RDMA**: SMB Direct over RDMA
-- **Encryption**: AES-128/256
+**CIFS (Common Internet File System)** é uma revisão/renomeação do SMB 1.0 feita pela Microsoft nos anos 1990 — a ideia era posicionar o protocolo como um padrão aberto para compartilhamento de arquivos via internet. Na prática, CIFS nunca substituiu NFS no mundo Unix, mas o nome "CIFS" ficou enraizado no vocabulário de storage enterprise, especialmente em NAS.
+
+> Hoje, quando um administrador fala "share CIFS" ou "acesso CIFS", ele se refere tecnicamente ao SMB — geralmente SMB 2 ou SMB 3 em ambientes modernos. O CIFS/SMB 1.0 puro está desativado na maioria dos ambientes por razões de segurança (EternalBlue/WannaCry).
+
+#### Versões e Evolução
+
+| Versão | Referência | Principais Mudanças |
+|--------|-----------|---------------------|
+| SMB 1.0 / CIFS | Windows NT 4.0 / 98 | Base original; verboso, inseguro |
+| SMB 2.0 | Windows Vista / Server 2008 | Redesign completo — menos verbosidade, pipeline de comandos |
+| SMB 2.1 | Windows 7 / Server 2008 R2 | Lease de arquivo melhorado |
+| SMB 3.0 | Windows 8 / Server 2012 | Multichannel, failover transparente, encryption AES-128 |
+| SMB 3.1.1 | Windows 10 / Server 2016 | Pre-auth integrity, criptografia obrigatória negociável |
+
+#### Características Relevantes (SMB 3.x)
+- **Multichannel**: Agrega múltiplas NICs automaticamente para maior throughput e redundância
+- **SMB Direct**: Suporte a RDMA — latência ultra-baixa sem CPU overhead (essencial para SQL Server e Hyper-V sobre NAS)
+- **Encryption**: AES-128-CCM e AES-128-GCM por share ou por sessão
+- **Persistent Handles**: Reconexão transparente em caso de falha de rede sem interromper a aplicação
+- **DFS (Distributed File System)**: Namespace unificado sobre múltiplos servidores de arquivo
+
+#### Samba — CIFS/SMB em Servidores Linux e NAS
+**Samba** é a implementação open-source do protocolo SMB para sistemas Unix/Linux. É o componente que permite que arrays NAS baseados em Linux (NetApp ONTAP, Hitachi HNAS, arrays ZFS etc.) exponham compartilhamentos para clientes Windows sem nenhuma configuração especial no cliente.
+
+- Integra com Active Directory via Kerberos + LDAP
+- Suporta SMB 2.x e 3.x completo
+- Gerencia mapeamento de identidade Unix ↔ Windows
 
 #### Quando Usar?
-- ✅ Ambientes Windows
-- ✅ Hyper-V
-- ✅ Shares corporativos
+- ✅ Ambientes Windows (clientes e servidores)
+- ✅ Hyper-V sobre NAS (SMB 3.x + SMB Direct)
+- ✅ Shares corporativos (home directories, perfis, arquivos Office)
+- ✅ Integração com Active Directory
+- ❌ Clientes Linux como primários → preferir NFS
+- ❌ SMB 1.0 / CIFS legado → **desativar imediatamente**
 
 <h3 id="fcoe---fibre-channel-over-ethernet">FCoE - Fibre Channel over Ethernet</h3>
 
@@ -4797,17 +4819,100 @@ Controle de **qual servidor** vê **qual LUN**.
 <h3 id="shares-compartilhamentos">Shares (Compartilhamentos)</h3>
 
 #### O Que É?
-Diretório compartilhado via **file protocol** (NFS/SMB).
+Um **share** (ou export) é um diretório no storage disponibilizado para acesso remoto via protocolo de arquivo. O mesmo volume físico pode ser exposto via NFS para clientes Linux e via CIFS/SMB para clientes Windows — isso é chamado de **acesso multiprotocolo**.
 
-#### Características NFS
-- Export path: \`/vol/vol1/share1\`
-- Mount no cliente: \`mount nfs-server:/export /mnt\`
-- Permissões Unix (UID/GID)
+#### Características NFS (clientes Linux/Unix)
+- Configurado como export: `/vol/dados/projetos`
+- Mount no cliente: `mount -t nfs storage:/vol/dados/projetos /mnt/projetos`
+- Permissões baseadas em **UID/GID Unix**
+- Controle de acesso via `/etc/exports` ou equivalente no NAS
 
-#### Características SMB
-- Share name: \`\\\\server\\sharename\`
-- Permissões NTFS + Share permissions
-- ACLs (Access Control Lists)
+#### Características SMB/CIFS (clientes Windows)
+- Share name: `\\storage\projetos`
+- Permissões via **ACLs NTFS** (mais granulares) + Share-level permissions
+- Autenticação integrada ao Active Directory via Kerberos
+
+---
+
+#### Acesso Multiprotocolo — NFS + CIFS no Mesmo Share
+
+O **acesso multiprotocolo** permite que o **mesmo diretório e os mesmos arquivos** sejam acessados simultaneamente por clientes Linux via NFS e por clientes Windows via CIFS/SMB. É uma das features mais valorizadas em NAS enterprise.
+
+\`\`\`
+┌─────────────────────────────────┐
+│         NAS / File Server        │
+│   /vol/projetos  (volume único)  │
+│                                  │
+│   Export NFS: /vol/projetos      │
+│   Share CIFS: \\\\nas\\projetos  │
+└─────────┬───────────────┬────────┘
+          │               │
+          ▼               ▼
+   [Linux / NFS]   [Windows / CIFS]
+   mount nfs:/...  \\\\nas\\projetos
+\`\`\`
+
+O desafio técnico é a **tradução de identidade**: NFS usa UID/GID numéricos, enquanto CIFS usa SIDs (Security Identifiers) do Active Directory. Para que as permissões sejam consistentes entre os dois mundos, o NAS precisa mapear esses identificadores.
+
+#### Mecanismos de Mapeamento de Identidade
+
+**1. Active Directory + LDAP**
+
+O método mais comum em ambientes enterprise. O NAS ingressa no domínio Active Directory e usa o LDAP do AD para:
+- Autenticar usuários Windows via Kerberos
+- Buscar os atributos Unix do usuário (UID, GID primário, shell, home directory) — armazenados no próprio AD via extensão **RFC 2307** ou **Services for Unix**
+
+\`\`\`
+Usuário "joao" no AD:
+  sAMAccountName: joao
+  uidNumber: 1042        ← atributo Unix no AD
+  gidNumber: 500
+  unixHomeDirectory: /home/joao
+\`\`\`
+
+Com isso, quando "joao" acessa via CIFS, o NAS sabe que o UID Unix correspondente é 1042 — e as permissões NFS (modo bits) são aplicadas corretamente.
+
+**2. Mapeamento Local (tabela no NAS)**
+
+Alternativa para ambientes menores ou sem AD: uma tabela local no NAS mapeia usuários Windows para usuários Unix:
+
+\`\`\`
+Windows: DOMINIO\joao  →  Unix: joao (UID 1042)
+Windows: DOMINIO\maria →  Unix: maria (UID 1043)
+\`\`\`
+
+Menos escalável, mas funciona em ambientes simples.
+
+**3. Winbind (Samba)**
+
+Componente do Samba que resolve automaticamente SIDs do AD para UIDs/GIDs Unix, sem precisar de atributos RFC 2307 no AD. Gera UIDs/GIDs de forma algorítmica a partir do SID.
+
+#### Modelo de Permissões Multiprotocolo
+
+O NAS precisa decidir qual modelo de permissão é autoritativo:
+
+| Modo | Autoritativo | Comportamento |
+|------|-------------|---------------|
+| **Unix** | UID/GID + mode bits | ACLs NTFS são ignoradas ou mapeadas para rwx |
+| **NTFS** | ACLs Windows | Permissões Unix são derivadas das ACLs |
+| **Misto** | Depende do protocolo | NFS usa Unix bits, CIFS usa ACLs NTFS — pode gerar inconsistências |
+| **Unificado (NFSv4 ACLs)** | NFSv4 ACLs | Modelo comum compatível com ambos |
+
+> A maioria dos NAS enterprise (NetApp ONTAP, Hitachi HNAS, Isilon/PowerScale) recomenda o modo **NTFS autoritativo** para ambientes multiprotocolo com AD, pois as ACLs NTFS são mais granulares e o AD é a fonte de verdade de identidade.
+
+#### Casos de Uso Comuns
+
+- **Projetos multidisciplinar**: área de TI (Linux) e área de negócios (Windows) acessando a mesma pasta de projetos
+- **Render farms**: workers Linux geram arquivos via NFS; equipe criativa acessa via SMB do Windows/Mac
+- **Backup centralizado**: agente de backup em Linux acessa via NFS volumes que usuários Windows popularam via CIFS
+- **Migração de plataforma**: durante transição de Windows para Linux (ou vice-versa), os dados permanecem acessíveis em ambos os protocolos sem movimentação
+
+#### Limitações e Cuidados
+
+- **Locking de arquivo**: o NAS precisa coordenar locks entre NFS (byte-range locks via NLM ou NFSv4) e CIFS (oplocks/leases) — comportamento pode variar entre implementações
+- **Encoding de nomes**: CIFS suporta Unicode (UTF-16); NFS historicamente usa bytes arbitrários (UTF-8 recomendado) — evitar caracteres especiais em nomes de arquivo
+- **Permissões inconsistentes**: sem mapeamento de identidade bem configurado, um arquivo criado via NFS pode aparecer sem permissão para o dono no Windows, e vice-versa
+- **SMB 1.0/CIFS legado**: alguns sistemas antigos de backup ou appliances usam CIFS 1.0 — manter desativado e usar SMB 2+ sempre que possível
 
 ---
 
