@@ -6,13 +6,10 @@
     <title>Conversor de Unidades de Storage - Deep Storage</title>
     <meta name="description" content="Conversor de unidades de armazenamento: KB, MB, GB, TB, PB, EB — decimal (SI), binário (IEC) e bits para rede. Ferramenta rápida para profissionais de storage enterprise.">
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Conversor de Unidades de Storage">
     <meta property="og:description" content="Converta entre todas as unidades de volumetria de armazenamento: SI, IEC e bits para rede.">
     <meta property="og:site_name" content="Storage Tech Blog">
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Conversor de Unidades de Storage">
     <meta name="twitter:description" content="Converta entre KB, MB, GB, TB, PB, EB — decimal (SI), binário (IEC) e bits.">
@@ -20,7 +17,7 @@
     <link rel="canonical" href="https://www.deepstorage.tech/conversor.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -50,85 +47,100 @@
 
         <div class="conv-page-header">
             <h1>Conversor de Unidades</h1>
-            <p>Decimal (SI), binário (IEC) e bits para rede. Digite o valor e selecione a unidade de origem.</p>
+            <p>Decimal (SI), binário (IEC) e bits de rede — todas as métricas de storage enterprise.</p>
         </div>
 
-        <div class="conv-input-card">
-            <div class="conv-input-wrap">
-                <input
-                    type="number"
-                    id="conv-value"
-                    class="conv-value-input"
-                    placeholder="0"
-                    min="0"
-                    step="any"
-                    aria-label="Valor a converter"
-                    autofocus
-                >
-                <select id="conv-unit" class="conv-unit-select" aria-label="Unidade de origem">
-                    <optgroup label="Decimal (SI)">
-                        <option value="B">Byte (B)</option>
-                        <option value="KB">Kilobyte (KB)</option>
-                        <option value="MB">Megabyte (MB)</option>
-                        <option value="GB" selected>Gigabyte (GB)</option>
-                        <option value="TB">Terabyte (TB)</option>
-                        <option value="PB">Petabyte (PB)</option>
-                        <option value="EB">Exabyte (EB)</option>
-                        <option value="ZB">Zettabyte (ZB)</option>
-                        <option value="YB">Yottabyte (YB)</option>
-                    </optgroup>
-                    <optgroup label="Binário (IEC)">
-                        <option value="KiB">Kibibyte (KiB)</option>
-                        <option value="MiB">Mebibyte (MiB)</option>
-                        <option value="GiB">Gibibyte (GiB)</option>
-                        <option value="TiB">Tebibyte (TiB)</option>
-                        <option value="PiB">Pebibyte (PiB)</option>
-                        <option value="EiB">Exbibyte (EiB)</option>
-                        <option value="ZiB">Zebibyte (ZiB)</option>
-                        <option value="YiB">Yobibyte (YiB)</option>
-                    </optgroup>
-                    <optgroup label="Bits (rede)">
-                        <option value="b">Bit (b)</option>
-                        <option value="Kbit">Kilobit (Kbit)</option>
-                        <option value="Mbit">Megabit (Mbit)</option>
-                        <option value="Gbit">Gigabit (Gbit)</option>
-                        <option value="Tbit">Terabit (Tbit)</option>
-                        <option value="Pbit">Petabit (Pbit)</option>
-                    </optgroup>
-                </select>
+        <!-- Input card -->
+        <div class="conv-input-card" role="group" aria-label="Entrada de conversão">
+            <div class="conv-field-group">
+                <div class="conv-field">
+                    <label class="conv-label" for="conv-value">Valor</label>
+                    <input
+                        type="number"
+                        id="conv-value"
+                        class="conv-value-input"
+                        placeholder="0"
+                        min="0"
+                        step="any"
+                        autocomplete="off"
+                        autofocus
+                    >
+                </div>
+                <div class="conv-field">
+                    <label class="conv-label" for="conv-unit">Unidade de origem</label>
+                    <select id="conv-unit" class="conv-unit-select">
+                        <optgroup label="Decimal (SI)">
+                            <option value="B">Byte (B)</option>
+                            <option value="KB">Kilobyte (KB)</option>
+                            <option value="MB">Megabyte (MB)</option>
+                            <option value="GB" selected>Gigabyte (GB)</option>
+                            <option value="TB">Terabyte (TB)</option>
+                            <option value="PB">Petabyte (PB)</option>
+                            <option value="EB">Exabyte (EB)</option>
+                            <option value="ZB">Zettabyte (ZB)</option>
+                            <option value="YB">Yottabyte (YB)</option>
+                        </optgroup>
+                        <optgroup label="Binário (IEC)">
+                            <option value="KiB">Kibibyte (KiB)</option>
+                            <option value="MiB">Mebibyte (MiB)</option>
+                            <option value="GiB">Gibibyte (GiB)</option>
+                            <option value="TiB">Tebibyte (TiB)</option>
+                            <option value="PiB">Pebibyte (PiB)</option>
+                            <option value="EiB">Exbibyte (EiB)</option>
+                            <option value="ZiB">Zebibyte (ZiB)</option>
+                            <option value="YiB">Yobibyte (YiB)</option>
+                        </optgroup>
+                        <optgroup label="Bits (rede)">
+                            <option value="b">Bit (b)</option>
+                            <option value="Kbit">Kilobit (Kbit)</option>
+                            <option value="Mbit">Megabit (Mbit)</option>
+                            <option value="Gbit">Gigabit (Gbit)</option>
+                            <option value="Tbit">Terabit (Tbit)</option>
+                            <option value="Pbit">Petabit (Pbit)</option>
+                        </optgroup>
+                    </select>
+                </div>
             </div>
+            <div class="conv-bytes-eq" id="bytes-eq" aria-live="polite"></div>
         </div>
 
+        <!-- Results -->
         <div class="conv-grid">
 
             <section class="conv-section" aria-labelledby="section-si">
                 <div class="conv-section-head">
-                    <span class="conv-badge conv-badge--si">SI</span>
+                    <span class="conv-badge conv-badge--si" aria-hidden="true">SI</span>
                     <div>
-                        <h2 class="conv-section-title" id="section-si">Decimal (base 10)</h2>
-                        <p class="conv-section-sub">1 KB = 1.000 bytes</p>
+                        <h2 class="conv-section-title" id="section-si">Decimal</h2>
+                        <p class="conv-section-sub">base 10 · 1 KB = 1.000 B</p>
                     </div>
                 </div>
-                <div class="conv-table" id="table-si" role="table" aria-label="Conversões decimais (SI)"></div>
+                <div class="conv-col-head" aria-hidden="true">
+                    <span>Símbolo</span><span>Unidade</span><span>Valor</span>
+                </div>
+                <div class="conv-table" id="table-si" role="table" aria-label="Conversões decimais SI"></div>
             </section>
 
             <section class="conv-section" aria-labelledby="section-iec">
                 <div class="conv-section-head">
-                    <span class="conv-badge conv-badge--iec">IEC</span>
+                    <span class="conv-badge conv-badge--iec" aria-hidden="true">IEC</span>
                     <div>
-                        <h2 class="conv-section-title" id="section-iec">Binário (base 2)</h2>
-                        <p class="conv-section-sub">1 KiB = 1.024 bytes</p>
+                        <h2 class="conv-section-title" id="section-iec">Binário</h2>
+                        <p class="conv-section-sub">base 2 · 1 KiB = 1.024 B</p>
                     </div>
                 </div>
-                <div class="conv-table" id="table-iec" role="table" aria-label="Conversões binárias (IEC)"></div>
+                <div class="conv-col-head" aria-hidden="true">
+                    <span>Símbolo</span><span>Unidade</span><span>Valor</span>
+                </div>
+                <div class="conv-table" id="table-iec" role="table" aria-label="Conversões binárias IEC"></div>
             </section>
 
             <section class="conv-section conv-section--bits" aria-labelledby="section-bits">
                 <div class="conv-section-head">
-                    <span class="conv-badge conv-badge--bits">bits</span>
+                    <span class="conv-badge conv-badge--bits" aria-hidden="true">bits</span>
                     <div>
                         <h2 class="conv-section-title" id="section-bits">Rede — bits</h2>
-                        <p class="conv-section-sub">Taxa de transferência e largura de banda</p>
+                        <p class="conv-section-sub">taxa de transferência e largura de banda</p>
                     </div>
                 </div>
                 <div class="conv-table conv-table--bits" id="table-bits" role="table" aria-label="Conversões em bits"></div>
@@ -136,9 +148,10 @@
 
         </div>
 
-        <p class="conv-note">
-            <strong>SI vs IEC:</strong> fabricantes de discos (HDD, SSD) usam prefixos SI — 1 TB = 10<sup>12</sup> bytes. Sistemas operacionais (Windows, Linux) reportam em IEC — 1 TiB = 2<sup>40</sup> bytes ≈ 1,0995 TB. Por isso um disco de "1 TB" aparece como ~931 GiB no OS.
-        </p>
+        <div class="conv-note" role="note">
+            <svg class="conv-note-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p><strong>Por que SI e IEC diferem?</strong> Fabricantes (HDD, SSD) anunciam capacidade em SI — 1 TB = 10<sup>12</sup> bytes. O sistema operacional reporta em IEC — 1 TiB = 2<sup>40</sup> bytes ≈ 1,0995 TB. Por isso um disco de "1 TB" aparece como ~931 GiB no Windows ou Linux.</p>
+        </div>
 
     </main>
 
@@ -158,9 +171,8 @@
     (function () {
         'use strict';
 
-        /* ── Units ──────────────────────────────────────────────────── */
+        /* ── Units ─────────────────────────────────────────────── */
         var UNITS = [
-            // Decimal (SI)
             { id: 'B',    label: 'Byte',      symbol: 'B',    bytes: 1,                 group: 'si'  },
             { id: 'KB',   label: 'Kilobyte',  symbol: 'KB',   bytes: 1e3,               group: 'si'  },
             { id: 'MB',   label: 'Megabyte',  symbol: 'MB',   bytes: 1e6,               group: 'si'  },
@@ -170,7 +182,6 @@
             { id: 'EB',   label: 'Exabyte',   symbol: 'EB',   bytes: 1e18,              group: 'si'  },
             { id: 'ZB',   label: 'Zettabyte', symbol: 'ZB',   bytes: 1e21,              group: 'si'  },
             { id: 'YB',   label: 'Yottabyte', symbol: 'YB',   bytes: 1e24,              group: 'si'  },
-            // Binary (IEC)
             { id: 'KiB',  label: 'Kibibyte',  symbol: 'KiB',  bytes: Math.pow(1024, 1), group: 'iec' },
             { id: 'MiB',  label: 'Mebibyte',  symbol: 'MiB',  bytes: Math.pow(1024, 2), group: 'iec' },
             { id: 'GiB',  label: 'Gibibyte',  symbol: 'GiB',  bytes: Math.pow(1024, 3), group: 'iec' },
@@ -179,7 +190,6 @@
             { id: 'EiB',  label: 'Exbibyte',  symbol: 'EiB',  bytes: Math.pow(1024, 6), group: 'iec' },
             { id: 'ZiB',  label: 'Zebibyte',  symbol: 'ZiB',  bytes: Math.pow(1024, 7), group: 'iec' },
             { id: 'YiB',  label: 'Yobibyte',  symbol: 'YiB',  bytes: Math.pow(1024, 8), group: 'iec' },
-            // Bits (network)
             { id: 'b',    label: 'Bit',       symbol: 'b',    bytes: 0.125,             group: 'bit' },
             { id: 'Kbit', label: 'Kilobit',   symbol: 'Kbit', bytes: 125,               group: 'bit' },
             { id: 'Mbit', label: 'Megabit',   symbol: 'Mbit', bytes: 125000,            group: 'bit' },
@@ -188,32 +198,27 @@
             { id: 'Pbit', label: 'Petabit',   symbol: 'Pbit', bytes: 1.25e14,           group: 'bit' },
         ];
 
-        var COPY_ICON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
-        var CHECK_ICON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+        var COPY_ICON = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+        var CHECK_ICON = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
 
-        /* ── Formatter ──────────────────────────────────────────────── */
+        /* ── Formatter ─────────────────────────────────────────── */
         function fmt(n) {
             if (n === 0) return '0';
             if (!isFinite(n) || isNaN(n)) return '—';
-
             var a = Math.abs(n);
-
             if (a >= 1e21 || (a > 0 && a < 1e-10)) {
                 return n.toExponential(4).replace(/\.?0+e/, 'e');
             }
-
             var decimals = a >= 1e12 ? 2 : a >= 1e6 ? 4 : a >= 1 ? 8 : 12;
-            var fixed = parseFloat(n.toFixed(decimals));
-            return fixed.toLocaleString('pt-BR', { maximumFractionDigits: decimals });
+            return parseFloat(n.toFixed(decimals)).toLocaleString('pt-BR', { maximumFractionDigits: decimals });
         }
 
         function rawNum(n) {
             if (!isFinite(n) || isNaN(n)) return '';
-            var s = n.toPrecision(15);
-            return s.replace(/\.?0+$/, '');
+            return n.toPrecision(15).replace(/\.?0+$/, '');
         }
 
-        /* ── Build rows ─────────────────────────────────────────────── */
+        /* ── Build rows ────────────────────────────────────────── */
         function buildRow(u) {
             var row = document.createElement('div');
             row.className = 'conv-row';
@@ -254,52 +259,61 @@
             var siTable   = document.getElementById('table-si');
             var iecTable  = document.getElementById('table-iec');
             var bitsTable = document.getElementById('table-bits');
-
             UNITS.forEach(function (u) {
-                var target = u.group === 'si' ? siTable : u.group === 'iec' ? iecTable : bitsTable;
-                target.appendChild(buildRow(u));
+                var t = u.group === 'si' ? siTable : u.group === 'iec' ? iecTable : bitsTable;
+                t.appendChild(buildRow(u));
             });
         }
 
-        /* ── Convert ────────────────────────────────────────────────── */
-        var valInput  = document.getElementById('conv-value');
+        /* ── Convert ───────────────────────────────────────────── */
+        var valInput   = document.getElementById('conv-value');
         var unitSelect = document.getElementById('conv-unit');
+        var bytesEqEl  = document.getElementById('bytes-eq');
+
+        function clearAll() {
+            UNITS.forEach(function (u) {
+                var el = document.getElementById('val-' + u.id);
+                if (el) { el.textContent = '—'; el.dataset.raw = ''; }
+                var row = document.querySelector('[data-unit="' + u.id + '"]');
+                if (row) row.classList.remove('is-source');
+            });
+            if (bytesEqEl) bytesEqEl.innerHTML = '';
+        }
 
         function convert() {
             var raw = valInput.value;
             var value = parseFloat(raw);
-
-            if (raw === '' || isNaN(value)) {
-                UNITS.forEach(function (u) {
-                    var el = document.getElementById('val-' + u.id);
-                    if (el) { el.textContent = '—'; el.dataset.raw = ''; }
-                    var row = document.querySelector('[data-unit="' + u.id + '"]');
-                    if (row) row.classList.remove('is-source');
-                });
-                return;
-            }
+            if (raw === '' || isNaN(value)) { clearAll(); return; }
 
             var srcId = unitSelect.value;
-            var src = UNITS.find(function (u) { return u.id === srcId; });
+            var src   = UNITS.find(function (u) { return u.id === srcId; });
             var bytes = value * src.bytes;
 
+            // bytes equivalent feedback
+            if (bytesEqEl) {
+                var bFmt = fmt(bytes);
+                bytesEqEl.innerHTML =
+                    '<span class="conv-bytes-label">= </span>' +
+                    '<span class="conv-bytes-val">' + bFmt + '</span>' +
+                    '<span class="conv-bytes-label"> bytes</span>';
+            }
+
             UNITS.forEach(function (u) {
-                var el = document.getElementById('val-' + u.id);
+                var el  = document.getElementById('val-' + u.id);
                 if (!el) return;
                 var result = bytes / u.bytes;
-                el.textContent = fmt(result);
-                el.dataset.raw = rawNum(result);
+                el.textContent  = fmt(result);
+                el.dataset.raw  = rawNum(result);
                 var row = document.querySelector('[data-unit="' + u.id + '"]');
                 if (row) row.classList.toggle('is-source', u.id === srcId);
             });
         }
 
-        /* ── Copy ───────────────────────────────────────────────────── */
+        /* ── Copy ──────────────────────────────────────────────── */
         function handleCopy(e) {
             var uid = e.currentTarget.dataset.uid;
             var el  = document.getElementById('val-' + uid);
             if (!el || !el.dataset.raw) return;
-
             var btn = e.currentTarget;
             navigator.clipboard.writeText(el.dataset.raw).then(function () {
                 btn.innerHTML = CHECK_ICON;
@@ -311,11 +325,10 @@
             });
         }
 
-        /* ── Init ───────────────────────────────────────────────────── */
+        /* ── Init ──────────────────────────────────────────────── */
         buildRows();
         valInput.addEventListener('input', convert);
         unitSelect.addEventListener('change', convert);
-
         document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
         var navBtn  = document.querySelector('.nav-toggle');
