@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Unidades de Storage - Deep Storage</title>
+    <meta name="description" content="Conversor de unidades de armazenamento: KB, MB, GB, TB, PB, EB — decimal (SI), binário (IEC) e bits para rede. Ferramenta rápida para profissionais de storage enterprise.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Conversor de Unidades de Storage">
+    <meta property="og:description" content="Converta entre todas as unidades de volumetria de armazenamento: SI, IEC e bits para rede.">
+    <meta property="og:site_name" content="Storage Tech Blog">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Conversor de Unidades de Storage">
+    <meta name="twitter:description" content="Converta entre KB, MB, GB, TB, PB, EB — decimal (SI), binário (IEC) e bits.">
+
+    <link rel="canonical" href="https://www.deepstorage.tech/conversor.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+    <nav class="navbar" aria-label="Navegação principal">
+        <div class="container">
+            <p class="logo"><a href="index.html">Storage Tech</a></p>
+            <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                    <rect x="2" y="5" width="18" height="2" rx="1" fill="currentColor"/>
+                    <rect x="2" y="10" width="18" height="2" rx="1" fill="currentColor"/>
+                    <rect x="2" y="15" width="18" height="2" rx="1" fill="currentColor"/>
+                </svg>
+            </button>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="conceitos.html">Conceitos</a></li>
+                <li><a href="recursos.html">Recursos</a></li>
+                <li><a href="conversor.html" class="active" aria-current="page">Conversor</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container" id="main-content">
+
+        <div class="conv-page-header">
+            <h1>Conversor de Unidades</h1>
+            <p>Decimal (SI), binário (IEC) e bits para rede. Digite o valor e selecione a unidade de origem.</p>
+        </div>
+
+        <div class="conv-input-card">
+            <div class="conv-input-wrap">
+                <input
+                    type="number"
+                    id="conv-value"
+                    class="conv-value-input"
+                    placeholder="0"
+                    min="0"
+                    step="any"
+                    aria-label="Valor a converter"
+                    autofocus
+                >
+                <select id="conv-unit" class="conv-unit-select" aria-label="Unidade de origem">
+                    <optgroup label="Decimal (SI)">
+                        <option value="B">Byte (B)</option>
+                        <option value="KB">Kilobyte (KB)</option>
+                        <option value="MB">Megabyte (MB)</option>
+                        <option value="GB" selected>Gigabyte (GB)</option>
+                        <option value="TB">Terabyte (TB)</option>
+                        <option value="PB">Petabyte (PB)</option>
+                        <option value="EB">Exabyte (EB)</option>
+                        <option value="ZB">Zettabyte (ZB)</option>
+                        <option value="YB">Yottabyte (YB)</option>
+                    </optgroup>
+                    <optgroup label="Binário (IEC)">
+                        <option value="KiB">Kibibyte (KiB)</option>
+                        <option value="MiB">Mebibyte (MiB)</option>
+                        <option value="GiB">Gibibyte (GiB)</option>
+                        <option value="TiB">Tebibyte (TiB)</option>
+                        <option value="PiB">Pebibyte (PiB)</option>
+                        <option value="EiB">Exbibyte (EiB)</option>
+                        <option value="ZiB">Zebibyte (ZiB)</option>
+                        <option value="YiB">Yobibyte (YiB)</option>
+                    </optgroup>
+                    <optgroup label="Bits (rede)">
+                        <option value="b">Bit (b)</option>
+                        <option value="Kbit">Kilobit (Kbit)</option>
+                        <option value="Mbit">Megabit (Mbit)</option>
+                        <option value="Gbit">Gigabit (Gbit)</option>
+                        <option value="Tbit">Terabit (Tbit)</option>
+                        <option value="Pbit">Petabit (Pbit)</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+
+        <div class="conv-grid">
+
+            <section class="conv-section" aria-labelledby="section-si">
+                <div class="conv-section-head">
+                    <span class="conv-badge conv-badge--si">SI</span>
+                    <div>
+                        <h2 class="conv-section-title" id="section-si">Decimal (base 10)</h2>
+                        <p class="conv-section-sub">1 KB = 1.000 bytes</p>
+                    </div>
+                </div>
+                <div class="conv-table" id="table-si" role="table" aria-label="Conversões decimais (SI)"></div>
+            </section>
+
+            <section class="conv-section" aria-labelledby="section-iec">
+                <div class="conv-section-head">
+                    <span class="conv-badge conv-badge--iec">IEC</span>
+                    <div>
+                        <h2 class="conv-section-title" id="section-iec">Binário (base 2)</h2>
+                        <p class="conv-section-sub">1 KiB = 1.024 bytes</p>
+                    </div>
+                </div>
+                <div class="conv-table" id="table-iec" role="table" aria-label="Conversões binárias (IEC)"></div>
+            </section>
+
+            <section class="conv-section conv-section--bits" aria-labelledby="section-bits">
+                <div class="conv-section-head">
+                    <span class="conv-badge conv-badge--bits">bits</span>
+                    <div>
+                        <h2 class="conv-section-title" id="section-bits">Rede — bits</h2>
+                        <p class="conv-section-sub">Taxa de transferência e largura de banda</p>
+                    </div>
+                </div>
+                <div class="conv-table conv-table--bits" id="table-bits" role="table" aria-label="Conversões em bits"></div>
+            </section>
+
+        </div>
+
+        <p class="conv-note">
+            <strong>SI vs IEC:</strong> fabricantes de discos (HDD, SSD) usam prefixos SI — 1 TB = 10<sup>12</sup> bytes. Sistemas operacionais (Windows, Linux) reportam em IEC — 1 TiB = 2<sup>40</sup> bytes ≈ 1,0995 TB. Por isso um disco de "1 TB" aparece como ~931 GiB no OS.
+        </p>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="copyright-year"></span> Storage Tech Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <noscript>
+        <div style="padding: 2rem; text-align: center; background: #1a1a1a; color: #e0e0e0;">
+            <p>Este conversor requer JavaScript. Por favor, habilite o JavaScript no seu navegador.</p>
+        </div>
+    </noscript>
+
+    <script>
+    (function () {
+        'use strict';
+
+        /* ── Units ──────────────────────────────────────────────────── */
+        var UNITS = [
+            // Decimal (SI)
+            { id: 'B',    label: 'Byte',      symbol: 'B',    bytes: 1,                 group: 'si'  },
+            { id: 'KB',   label: 'Kilobyte',  symbol: 'KB',   bytes: 1e3,               group: 'si'  },
+            { id: 'MB',   label: 'Megabyte',  symbol: 'MB',   bytes: 1e6,               group: 'si'  },
+            { id: 'GB',   label: 'Gigabyte',  symbol: 'GB',   bytes: 1e9,               group: 'si'  },
+            { id: 'TB',   label: 'Terabyte',  symbol: 'TB',   bytes: 1e12,              group: 'si'  },
+            { id: 'PB',   label: 'Petabyte',  symbol: 'PB',   bytes: 1e15,              group: 'si'  },
+            { id: 'EB',   label: 'Exabyte',   symbol: 'EB',   bytes: 1e18,              group: 'si'  },
+            { id: 'ZB',   label: 'Zettabyte', symbol: 'ZB',   bytes: 1e21,              group: 'si'  },
+            { id: 'YB',   label: 'Yottabyte', symbol: 'YB',   bytes: 1e24,              group: 'si'  },
+            // Binary (IEC)
+            { id: 'KiB',  label: 'Kibibyte',  symbol: 'KiB',  bytes: Math.pow(1024, 1), group: 'iec' },
+            { id: 'MiB',  label: 'Mebibyte',  symbol: 'MiB',  bytes: Math.pow(1024, 2), group: 'iec' },
+            { id: 'GiB',  label: 'Gibibyte',  symbol: 'GiB',  bytes: Math.pow(1024, 3), group: 'iec' },
+            { id: 'TiB',  label: 'Tebibyte',  symbol: 'TiB',  bytes: Math.pow(1024, 4), group: 'iec' },
+            { id: 'PiB',  label: 'Pebibyte',  symbol: 'PiB',  bytes: Math.pow(1024, 5), group: 'iec' },
+            { id: 'EiB',  label: 'Exbibyte',  symbol: 'EiB',  bytes: Math.pow(1024, 6), group: 'iec' },
+            { id: 'ZiB',  label: 'Zebibyte',  symbol: 'ZiB',  bytes: Math.pow(1024, 7), group: 'iec' },
+            { id: 'YiB',  label: 'Yobibyte',  symbol: 'YiB',  bytes: Math.pow(1024, 8), group: 'iec' },
+            // Bits (network)
+            { id: 'b',    label: 'Bit',       symbol: 'b',    bytes: 0.125,             group: 'bit' },
+            { id: 'Kbit', label: 'Kilobit',   symbol: 'Kbit', bytes: 125,               group: 'bit' },
+            { id: 'Mbit', label: 'Megabit',   symbol: 'Mbit', bytes: 125000,            group: 'bit' },
+            { id: 'Gbit', label: 'Gigabit',   symbol: 'Gbit', bytes: 125000000,         group: 'bit' },
+            { id: 'Tbit', label: 'Terabit',   symbol: 'Tbit', bytes: 1.25e11,           group: 'bit' },
+            { id: 'Pbit', label: 'Petabit',   symbol: 'Pbit', bytes: 1.25e14,           group: 'bit' },
+        ];
+
+        var COPY_ICON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+        var CHECK_ICON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+
+        /* ── Formatter ──────────────────────────────────────────────── */
+        function fmt(n) {
+            if (n === 0) return '0';
+            if (!isFinite(n) || isNaN(n)) return '—';
+
+            var a = Math.abs(n);
+
+            if (a >= 1e21 || (a > 0 && a < 1e-10)) {
+                return n.toExponential(4).replace(/\.?0+e/, 'e');
+            }
+
+            var decimals = a >= 1e12 ? 2 : a >= 1e6 ? 4 : a >= 1 ? 8 : 12;
+            var fixed = parseFloat(n.toFixed(decimals));
+            return fixed.toLocaleString('pt-BR', { maximumFractionDigits: decimals });
+        }
+
+        function rawNum(n) {
+            if (!isFinite(n) || isNaN(n)) return '';
+            var s = n.toPrecision(15);
+            return s.replace(/\.?0+$/, '');
+        }
+
+        /* ── Build rows ─────────────────────────────────────────────── */
+        function buildRow(u) {
+            var row = document.createElement('div');
+            row.className = 'conv-row';
+            row.dataset.unit = u.id;
+            row.setAttribute('role', 'row');
+
+            var sym = document.createElement('span');
+            sym.className = 'conv-sym';
+            sym.setAttribute('role', 'cell');
+            sym.textContent = u.symbol;
+
+            var name = document.createElement('span');
+            name.className = 'conv-name';
+            name.setAttribute('role', 'cell');
+            name.textContent = u.label;
+
+            var val = document.createElement('span');
+            val.className = 'conv-val';
+            val.setAttribute('role', 'cell');
+            val.id = 'val-' + u.id;
+            val.textContent = '—';
+
+            var btn = document.createElement('button');
+            btn.className = 'conv-copy';
+            btn.setAttribute('aria-label', 'Copiar valor de ' + u.label);
+            btn.dataset.uid = u.id;
+            btn.innerHTML = COPY_ICON;
+            btn.addEventListener('click', handleCopy);
+
+            row.appendChild(sym);
+            row.appendChild(name);
+            row.appendChild(val);
+            row.appendChild(btn);
+            return row;
+        }
+
+        function buildRows() {
+            var siTable   = document.getElementById('table-si');
+            var iecTable  = document.getElementById('table-iec');
+            var bitsTable = document.getElementById('table-bits');
+
+            UNITS.forEach(function (u) {
+                var target = u.group === 'si' ? siTable : u.group === 'iec' ? iecTable : bitsTable;
+                target.appendChild(buildRow(u));
+            });
+        }
+
+        /* ── Convert ────────────────────────────────────────────────── */
+        var valInput  = document.getElementById('conv-value');
+        var unitSelect = document.getElementById('conv-unit');
+
+        function convert() {
+            var raw = valInput.value;
+            var value = parseFloat(raw);
+
+            if (raw === '' || isNaN(value)) {
+                UNITS.forEach(function (u) {
+                    var el = document.getElementById('val-' + u.id);
+                    if (el) { el.textContent = '—'; el.dataset.raw = ''; }
+                    var row = document.querySelector('[data-unit="' + u.id + '"]');
+                    if (row) row.classList.remove('is-source');
+                });
+                return;
+            }
+
+            var srcId = unitSelect.value;
+            var src = UNITS.find(function (u) { return u.id === srcId; });
+            var bytes = value * src.bytes;
+
+            UNITS.forEach(function (u) {
+                var el = document.getElementById('val-' + u.id);
+                if (!el) return;
+                var result = bytes / u.bytes;
+                el.textContent = fmt(result);
+                el.dataset.raw = rawNum(result);
+                var row = document.querySelector('[data-unit="' + u.id + '"]');
+                if (row) row.classList.toggle('is-source', u.id === srcId);
+            });
+        }
+
+        /* ── Copy ───────────────────────────────────────────────────── */
+        function handleCopy(e) {
+            var uid = e.currentTarget.dataset.uid;
+            var el  = document.getElementById('val-' + uid);
+            if (!el || !el.dataset.raw) return;
+
+            var btn = e.currentTarget;
+            navigator.clipboard.writeText(el.dataset.raw).then(function () {
+                btn.innerHTML = CHECK_ICON;
+                btn.classList.add('copied');
+                setTimeout(function () {
+                    btn.innerHTML = COPY_ICON;
+                    btn.classList.remove('copied');
+                }, 1500);
+            });
+        }
+
+        /* ── Init ───────────────────────────────────────────────────── */
+        buildRows();
+        valInput.addEventListener('input', convert);
+        unitSelect.addEventListener('change', convert);
+
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+        var navBtn  = document.querySelector('.nav-toggle');
+        var navMenu = document.getElementById('nav-menu');
+        if (navBtn && navMenu) {
+            navBtn.addEventListener('click', function () {
+                var open = navMenu.classList.toggle('open');
+                navBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+        }
+
+    })();
+    </script>
+</body>
+</html>
