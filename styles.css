@@ -282,8 +282,8 @@ a:hover {
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--primary);
-    background: rgba(0, 255, 159, 0.08);
-    border: 1px solid rgba(0, 255, 159, 0.15);
+    background: rgba(217, 119, 87, 0.08);
+    border: 1px solid rgba(217, 119, 87, 0.15);
     padding: 2px 7px;
     border-radius: var(--r-sm);
     white-space: nowrap;
@@ -320,8 +320,8 @@ a:hover {
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(rgba(0, 255, 159, 0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 159, 0.025) 1px, transparent 1px);
+        linear-gradient(rgba(217, 119, 87, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(217, 119, 87, 0.025) 1px, transparent 1px);
     background-size: 48px 48px;
     pointer-events: none;
 }
@@ -435,8 +435,8 @@ main {
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--primary);
-    background: rgba(0, 255, 159, 0.08);
-    border: 1px solid rgba(0, 255, 159, 0.15);
+    background: rgba(217, 119, 87, 0.08);
+    border: 1px solid rgba(217, 119, 87, 0.15);
     padding: 2px 8px;
     border-radius: var(--r-sm);
 }
@@ -626,7 +626,7 @@ main {
     color: var(--primary);
     text-decoration: underline;
     text-underline-offset: 3px;
-    text-decoration-color: rgba(0, 255, 159, 0.4);
+    text-decoration-color: rgba(217, 119, 87, 0.4);
 }
 
 #post-body a:hover {
@@ -1032,7 +1032,7 @@ main {
     margin-top: var(--sp-8);
     margin-bottom: var(--sp-5);
     padding-left: var(--sp-3);
-    border-left: 2px solid rgba(0, 217, 255, 0.3);
+    border-left: 2px solid rgba(150, 127, 217, 0.3);
 }
 
 #recursos-content p {
@@ -1454,7 +1454,7 @@ footer {
 .recurso-card:hover {
     transform: translateY(-2px);
     border-color: var(--border-accent);
-    box-shadow: 0 6px 20px rgba(0, 255, 159, 0.07);
+    box-shadow: 0 6px 20px rgba(217, 119, 87, 0.07);
     color: inherit;
     text-decoration: none;
 }
@@ -1597,7 +1597,7 @@ footer {
 
 .recurso-cert-card:hover {
     transform: translateY(-2px);
-    border-color: rgba(0, 217, 255, 0.2);
+    border-color: rgba(150, 127, 217, 0.2);
     color: inherit;
     text-decoration: none;
 }
@@ -1793,7 +1793,7 @@ footer {
     border-radius: var(--r-lg);
     padding: var(--sp-6);
     margin-bottom: var(--sp-8);
-    box-shadow: 0 0 0 1px rgba(0, 255, 159, 0.04), 0 8px 32px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 0 0 1px rgba(217, 119, 87, 0.04), 0 8px 32px rgba(0, 0, 0, 0.45);
 }
 
 .conv-field-group {
@@ -1940,14 +1940,14 @@ footer {
 
 .conv-badge--si {
     color: var(--primary);
-    background: rgba(0, 255, 159, 0.1);
-    border: 1px solid rgba(0, 255, 159, 0.25);
+    background: rgba(217, 119, 87, 0.1);
+    border: 1px solid rgba(217, 119, 87, 0.25);
 }
 
 .conv-badge--iec {
     color: var(--secondary);
-    background: rgba(0, 217, 255, 0.1);
-    border: 1px solid rgba(0, 217, 255, 0.25);
+    background: rgba(150, 127, 217, 0.1);
+    border: 1px solid rgba(150, 127, 217, 0.25);
 }
 
 .conv-badge--bits {
@@ -2016,7 +2016,7 @@ footer {
 
 /* Source unit: strong left accent */
 .conv-row.is-source {
-    background: rgba(0, 255, 159, 0.06);
+    background: rgba(217, 119, 87, 0.06);
     border-left-color: var(--primary);
 }
 
