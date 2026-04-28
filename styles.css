@@ -8,12 +8,12 @@
     --surface-2:      #1a1a1a;
     --surface-3:      #222222;
     --border:         rgba(255, 255, 255, 0.06);
-    --border-accent:  rgba(0, 255, 159, 0.18);
+    --border-accent:  rgba(217, 119, 87, 0.18);
 
-    --primary:        #00ff9f;
-    --primary-dim:    rgba(0, 255, 159, 0.12);
-    --primary-glow:   rgba(0, 255, 159, 0.25);
-    --secondary:      #00d9ff;
+    --primary:        #D97757;
+    --primary-dim:    rgba(217, 119, 87, 0.12);
+    --primary-glow:   rgba(217, 119, 87, 0.25);
+    --secondary:      #967FD9;
 
     --text:           #e8e8e8;
     --text-muted:     #8a8a8a;

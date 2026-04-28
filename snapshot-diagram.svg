@@ -1,10 +1,10 @@
 <svg width="720" height="380" viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="ag" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0 0,8 3,0 6" fill="#00ff9f"/>
+      <polygon points="0 0,8 3,0 6" fill="#D97757"/>
     </marker>
     <marker id="ac" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-      <polygon points="0 0,8 3,0 6" fill="#00d9ff"/>
+      <polygon points="0 0,8 3,0 6" fill="#967FD9"/>
     </marker>
     <marker id="agr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
       <polygon points="0 0,8 3,0 6" fill="#555"/>
@@ -17,7 +17,7 @@
   <!-- Title -->
   <text x="360" y="34" text-anchor="middle"
         font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
-        font-size="15" font-weight="700" fill="#00ff9f">Como um Snapshot Funciona</text>
+        font-size="15" font-weight="700" fill="#D97757">Como um Snapshot Funciona</text>
 
   <!-- ══════════════════════════════════════════
        PAINEL ESQUERDO — Snapshot Criado
@@ -28,7 +28,7 @@
 
   <!-- Label -->
   <text x="175" y="60" text-anchor="middle"
-        font-family="'Segoe UI',sans-serif" font-size="13" font-weight="600" fill="#00ff9f">
+        font-family="'Segoe UI',sans-serif" font-size="13" font-weight="600" fill="#D97757">
     Snapshot Criado
   </text>
   <text x="175" y="76" text-anchor="middle"
@@ -37,9 +37,9 @@
   </text>
 
   <!-- Volume box -->
-  <rect x="60" y="90" width="130" height="38" rx="8" fill="#1a1a1a" stroke="#00ff9f" stroke-width="1.5"/>
+  <rect x="60" y="90" width="130" height="38" rx="8" fill="#1a1a1a" stroke="#D97757" stroke-width="1.5"/>
   <text x="125" y="114" text-anchor="middle"
-        font-family="'Segoe UI',sans-serif" font-size="12" fill="#00ff9f">Volume</text>
+        font-family="'Segoe UI',sans-serif" font-size="12" fill="#D97757">Volume</text>
 
   <!-- Snapshot box -->
   <rect x="60" y="148" width="130" height="38" rx="8" fill="#1a1a1a" stroke="#555" stroke-width="1.5" stroke-dasharray="6,3"/>
@@ -48,22 +48,22 @@
 
   <!-- Arrows converge to blocks -->
   <!-- Volume arrow -->
-  <polyline points="125,128 125,220" fill="none" stroke="#00ff9f" stroke-width="1.5" marker-end="url(#ag)"/>
+  <polyline points="125,128 125,220" fill="none" stroke="#D97757" stroke-width="1.5" marker-end="url(#ag)"/>
   <!-- Snapshot arrow -->
   <polyline points="125,186 125,220" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#agr)"/>
 
   <!-- Physical blocks (shared) -->
   <!-- A -->
-  <rect x="46"  y="223" width="42" height="42" rx="7" fill="#00d9ff"/>
+  <rect x="46"  y="223" width="42" height="42" rx="7" fill="#967FD9"/>
   <text x="67"  y="250" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="16" font-weight="700" fill="#0a0a0a">A</text>
   <!-- B -->
-  <rect x="96"  y="223" width="42" height="42" rx="7" fill="#00d9ff"/>
+  <rect x="96"  y="223" width="42" height="42" rx="7" fill="#967FD9"/>
   <text x="117" y="250" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="16" font-weight="700" fill="#0a0a0a">B</text>
   <!-- C -->
-  <rect x="146" y="223" width="42" height="42" rx="7" fill="#00d9ff"/>
+  <rect x="146" y="223" width="42" height="42" rx="7" fill="#967FD9"/>
   <text x="167" y="250" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="16" font-weight="700" fill="#0a0a0a">C</text>
   <!-- D -->
-  <rect x="196" y="223" width="42" height="42" rx="7" fill="#00d9ff"/>
+  <rect x="196" y="223" width="42" height="42" rx="7" fill="#967FD9"/>
   <text x="217" y="250" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="16" font-weight="700" fill="#0a0a0a">D</text>
 
   <!-- Label blocos físicos -->
@@ -71,9 +71,9 @@
         font-family="'Segoe UI',sans-serif" font-size="10" fill="#444">blocos físicos em disco</text>
 
   <!-- Badge 0 bytes -->
-  <rect x="64" y="300" width="122" height="24" rx="6" fill="rgba(0,255,159,0.1)" stroke="#00ff9f" stroke-width="1"/>
+  <rect x="64" y="300" width="122" height="24" rx="6" fill="rgba(217,119,87,0.1)" stroke="#D97757" stroke-width="1"/>
   <text x="125" y="316" text-anchor="middle"
-        font-family="'Segoe UI',sans-serif" font-size="11" fill="#00ff9f">≈ 0 bytes extras</text>
+        font-family="'Segoe UI',sans-serif" font-size="11" fill="#D97757">≈ 0 bytes extras</text>
 
   <!-- ══════════════════════════════════════════
        PAINEL DIREITO — Bloco B Modificado
@@ -81,7 +81,7 @@
 
   <!-- Label -->
   <text x="537" y="60" text-anchor="middle"
-        font-family="'Segoe UI',sans-serif" font-size="13" font-weight="600" fill="#00ff9f">
+        font-family="'Segoe UI',sans-serif" font-size="13" font-weight="600" fill="#D97757">
     Bloco B Modificado (Copy-on-Write)
   </text>
   <text x="537" y="76" text-anchor="middle"
@@ -90,9 +90,9 @@
   </text>
 
   <!-- Volume box -->
-  <rect x="375" y="90" width="130" height="38" rx="8" fill="#1a1a1a" stroke="#00ff9f" stroke-width="1.5"/>
+  <rect x="375" y="90" width="130" height="38" rx="8" fill="#1a1a1a" stroke="#D97757" stroke-width="1.5"/>
   <text x="440" y="114" text-anchor="middle"
-        font-family="'Segoe UI',sans-serif" font-size="12" fill="#00ff9f">Volume</text>
+        font-family="'Segoe UI',sans-serif" font-size="12" fill="#D97757">Volume</text>
 
   <!-- Snapshot box -->
   <rect x="590" y="90" width="100" height="38" rx="8" fill="#1a1a1a" stroke="#555" stroke-width="1.5" stroke-dasharray="6,3"/>
@@ -101,11 +101,11 @@
 
   <!-- Physical blocks at bottom right -->
   <!-- A shared -->
-  <rect x="375" y="223" width="42" height="42" rx="7" fill="#00d9ff"/>
+  <rect x="375" y="223" width="42" height="42" rx="7" fill="#967FD9"/>
   <text x="396" y="250" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="16" font-weight="700" fill="#0a0a0a">A</text>
 
   <!-- B-novo (volume only) -->
-  <rect x="425" y="223" width="42" height="42" rx="7" fill="#00ff9f"/>
+  <rect x="425" y="223" width="42" height="42" rx="7" fill="#D97757"/>
   <text x="446" y="241" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="13" font-weight="700" fill="#0a0a0a">B</text>
   <text x="446" y="256" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="9" fill="#0a0a0a">novo</text>
 
@@ -115,11 +115,11 @@
   <text x="496" y="256" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="9" fill="#888">antigo</text>
 
   <!-- C shared -->
-  <rect x="525" y="223" width="42" height="42" rx="7" fill="#00d9ff"/>
+  <rect x="525" y="223" width="42" height="42" rx="7" fill="#967FD9"/>
   <text x="546" y="250" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="16" font-weight="700" fill="#0a0a0a">C</text>
 
   <!-- D shared -->
-  <rect x="575" y="223" width="42" height="42" rx="7" fill="#00d9ff"/>
+  <rect x="575" y="223" width="42" height="42" rx="7" fill="#967FD9"/>
   <text x="596" y="250" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="16" font-weight="700" fill="#0a0a0a">D</text>
 
   <!-- Label blocos físicos -->
@@ -128,13 +128,13 @@
 
   <!-- ── Arrows from Volume to blocks ── -->
   <!-- Volume → A -->
-  <polyline points="406,128 396,220" fill="none" stroke="#00ff9f" stroke-width="1.5" marker-end="url(#ag)"/>
+  <polyline points="406,128 396,220" fill="none" stroke="#D97757" stroke-width="1.5" marker-end="url(#ag)"/>
   <!-- Volume → B-novo -->
-  <polyline points="432,128 446,220" fill="none" stroke="#00ff9f" stroke-width="1.5" marker-end="url(#ag)"/>
+  <polyline points="432,128 446,220" fill="none" stroke="#D97757" stroke-width="1.5" marker-end="url(#ag)"/>
   <!-- Volume → C -->
-  <polyline points="458,128 546,220" fill="none" stroke="#00ff9f" stroke-width="1.5" marker-end="url(#ag)"/>
+  <polyline points="458,128 546,220" fill="none" stroke="#D97757" stroke-width="1.5" marker-end="url(#ag)"/>
   <!-- Volume → D -->
-  <polyline points="470,128 596,220" fill="none" stroke="#00ff9f" stroke-width="1.5" marker-end="url(#ag)"/>
+  <polyline points="470,128 596,220" fill="none" stroke="#D97757" stroke-width="1.5" marker-end="url(#ag)"/>
 
   <!-- ── Arrows from Snapshot to blocks ── -->
   <!-- Snapshot → A -->
@@ -157,10 +157,10 @@
   ══════════════════════════════════════════ -->
   <line x1="30" y1="350" x2="690" y2="350" stroke="#222" stroke-width="1"/>
 
-  <rect x="30"  y="360" width="14" height="14" rx="3" fill="#00d9ff"/>
+  <rect x="30"  y="360" width="14" height="14" rx="3" fill="#967FD9"/>
   <text x="50"  y="371" font-family="'Segoe UI',sans-serif" font-size="11" fill="#666">Bloco compartilhado</text>
 
-  <rect x="210" y="360" width="14" height="14" rx="3" fill="#00ff9f"/>
+  <rect x="210" y="360" width="14" height="14" rx="3" fill="#D97757"/>
   <text x="230" y="371" font-family="'Segoe UI',sans-serif" font-size="11" fill="#666">Bloco novo (volume)</text>
 
   <rect x="390" y="360" width="14" height="14" rx="3" fill="#333" stroke="#555" stroke-width="1"/>
