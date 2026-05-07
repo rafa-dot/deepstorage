@@ -45,20 +45,25 @@ Deploy = push para main. Sem CI/CD. Propagação < 2 min.
 
 ## Design System
 
-**Tema:** dark profundo, estética técnica/terminal.
+**Tema:** [Dracula](https://draculatheme.com) — dark, alto contraste, paleta consagrada.
 
 ```
---bg:       #080808    (fundo principal)
---surface:  #111111    (cards)
---primary:  #00ff9f    (verde neon — destaque principal)
---secondary:#00d9ff    (ciano — destaque secundário)
---text:     #e8e8e8
+--bg:        #282a36    (fundo principal — Background)
+--surface:   #44475a    (cards — Current Line)
+--surface-2: #383a4a    (superfície intermediária)
+--surface-3: #6272a4    (bordas/sutil — Comment)
+--primary:   #bd93f9    (Purple — destaque principal)
+--secondary: #ff79c6    (Pink — destaque secundário)
+--text:      #f8f8f2    (Foreground)
+--text-muted:#6272a4    (Comment)
 --font-body: Inter
 --font-mono: JetBrains Mono
 Espaçamento: grade 8pt
 ```
 
-SVGs usam: fundo `#111111`, verde `#00ff9f`, ciano `#00d9ff`, cinza `#555`.
+Cores contextuais Dracula (tags, callouts, code blocks): Cyan `#8be9fd`, Green `#50fa7b`, Orange `#ffb86c`, Red `#ff5555`, Yellow `#f1fa8c`.
+
+SVGs usam: fundo `#282a36`, surface `#44475a`, roxo `#bd93f9`, rosa `#ff79c6`, ciano `#8be9fd`, verde `#50fa7b`, cinza/comment `#6272a4`.
 
 ---
 
@@ -96,7 +101,7 @@ Posts publicados atualmente: IDs 1, 2, 3, 4, 6, 7, 9, 10, 11, 12, 13, 14 (total:
 4. **Conteúdo dos posts é Markdown em template literals** — backticks inline devem ser escapados (`\``).
 5. **Manter acessibilidade** — `aria-*` attributes, hierarquia de headings sem saltos, `alt` em imagens.
 6. **Não quebrar a busca global** — ela pesquisa em `posts[]`, `conceitosContent` e `recursosContent`; qualquer novo conteúdo indexável deve ser exposto a essas fontes.
-7. **SVGs novos** devem seguir a paleta do design system (`#111111`, `#00ff9f`, `#00d9ff`).
+7. **SVGs novos** devem seguir a paleta Dracula do design system (fundo `#282a36`, surface `#44475a`, roxo `#bd93f9`, rosa `#ff79c6`, comment `#6272a4`).
 
 ---
 
