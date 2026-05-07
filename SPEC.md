@@ -78,21 +78,22 @@ Todo o conteúdo do blog vive dentro de `script.js` — não há arquivos `.md` 
 ### 4.1 Tokens CSS (`:root`)
 
 ```css
---bg:            #080808        /* fundo principal */
---surface:       #111111        /* cards, painéis */
---surface-2:     #1a1a1a        /* superfícies elevadas */
---surface-3:     #222222        /* chips, badges */
---border:        rgba(255,255,255,0.06)
---border-accent: rgba(0,255,159,0.18)
+/* Tema Dracula — https://draculatheme.com */
+--bg:            #282a36        /* Background — fundo principal */
+--surface:       #44475a        /* Current Line — cards, painéis */
+--surface-2:     #383a4a        /* superfícies elevadas */
+--surface-3:     #6272a4        /* Comment — chips, badges, bordas sutis */
+--border:        rgba(248,248,242,0.06)
+--border-accent: rgba(189,147,249,0.18)
 
---primary:       #00ff9f        /* verde neon — destaque principal */
---primary-dim:   rgba(0,255,159,0.12)
---primary-glow:  rgba(0,255,159,0.25)
---secondary:     #00d9ff        /* ciano — destaque secundário */
+--primary:       #bd93f9        /* Purple — destaque principal */
+--primary-dim:   rgba(189,147,249,0.12)
+--primary-glow:  rgba(189,147,249,0.25)
+--secondary:     #ff79c6        /* Pink — destaque secundário */
 
---text:          #e8e8e8
---text-muted:    #8a8a8a
---text-subtle:   #555555
+--text:          #f8f8f2        /* Foreground */
+--text-muted:    #6272a4        /* Comment */
+--text-subtle:   #44475a        /* Current Line */
 
 --font-body: 'Inter', system-ui, sans-serif
 --font-mono: 'JetBrains Mono', monospace
@@ -118,7 +119,9 @@ Todo o conteúdo do blog vive dentro de `script.js` — não há arquivos `.md` 
 
 ### 4.3 Identidade Visual
 
-Tema escuro profundo com acentos em verde neon (`#00ff9f`) e ciano (`#00d9ff`). Sem elementos decorativos animados — escolha deliberada por clareza e performance. Estética técnica / terminal, coerente com o público-alvo (profissionais de infraestrutura).
+Tema **[Dracula](https://draculatheme.com)** — dark de alto contraste, com acentos em Purple (`#bd93f9`) e Pink (`#ff79c6`). Sem elementos decorativos animados — escolha deliberada por clareza e performance. Estética técnica / terminal, coerente com o público-alvo (profissionais de infraestrutura).
+
+Cores contextuais Dracula disponíveis para tags, callouts, code blocks e destaques: Cyan `#8be9fd`, Green `#50fa7b`, Orange `#ffb86c`, Red `#ff5555`, Yellow `#f1fa8c`.
 
 ---
 
@@ -234,7 +237,7 @@ Diagrama de sequência comparando replicação **Síncrona** vs **Assíncrona** 
 
 Usado no post id:7.
 
-**Paleta dos SVGs:** fundo `#111111`, verde `#00ff9f`, ciano `#00d9ff`, cinza `#555`. Compatível com o tema do site.
+**Paleta dos SVGs (Dracula):** fundo `#282a36`, surface `#44475a`, Purple `#bd93f9`, Pink `#ff79c6`, Green `#50fa7b`, Comment `#6272a4`. Compatível com o tema do site.
 
 ---
 
