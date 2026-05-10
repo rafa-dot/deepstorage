@@ -2,22 +2,24 @@
    DESIGN TOKENS
    ===================================================== */
 :root {
-    /* Colors — Dracula theme (https://draculatheme.com) */
-    --bg:             #282a36;
-    --surface:        #44475a;
-    --surface-2:      #383a4a;
-    --surface-3:      #6272a4;
-    --border:         rgba(248, 248, 242, 0.06);
-    --border-accent:  rgba(189, 147, 249, 0.18);
+    /* Colors — deep AI theme */
+    --bg:             #05070d;
+    --surface:        #0d1320;
+    --surface-2:      #111a2b;
+    --surface-3:      #1b2840;
+    --border:         rgba(214, 231, 255, 0.09);
+    --border-accent:  rgba(78, 205, 255, 0.26);
 
-    --primary:        #bd93f9;
-    --primary-dim:    rgba(189, 147, 249, 0.12);
-    --primary-glow:   rgba(189, 147, 249, 0.25);
-    --secondary:      #ff79c6;
+    --primary:        #4ecdff;
+    --primary-dim:    rgba(78, 205, 255, 0.13);
+    --primary-glow:   rgba(78, 205, 255, 0.32);
+    --secondary:      #a78bfa;
+    --accent-warm:    #f6c177;
+    --danger:         #ff6b8a;
 
-    --text:           #f8f8f2;
-    --text-muted:     #6272a4;
-    --text-subtle:    #44475a;
+    --text:           #f4f8ff;
+    --text-muted:     #9db0c9;
+    --text-subtle:    #7288a5;
 
     /* Typography */
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -126,7 +128,7 @@ a:hover {
    NAVIGATION
    ===================================================== */
 .navbar {
-    background: rgba(40, 42, 54, 0.92);
+    background: rgba(5, 7, 13, 0.92);
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
@@ -177,7 +179,7 @@ a:hover {
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--text);
-    background: rgba(248, 248, 242, 0.06);
+    background: rgba(244, 248, 255, 0.06);
 }
 
 .nav-links a.active {
@@ -201,7 +203,7 @@ a:hover {
 
 .nav-toggle:hover {
     color: var(--text);
-    background: rgba(248, 248, 242, 0.06);
+    background: rgba(244, 248, 255, 0.06);
 }
 
 .nav-toggle svg {
@@ -282,8 +284,8 @@ a:hover {
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--primary);
-    background: rgba(189, 147, 249, 0.08);
-    border: 1px solid rgba(189, 147, 249, 0.15);
+    background: rgba(78, 205, 255, 0.08);
+    border: 1px solid rgba(78, 205, 255, 0.15);
     padding: 2px 7px;
     border-radius: var(--r-sm);
     white-space: nowrap;
@@ -320,8 +322,8 @@ a:hover {
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(rgba(189, 147, 249, 0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(189, 147, 249, 0.025) 1px, transparent 1px);
+        linear-gradient(rgba(78, 205, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(78, 205, 255, 0.025) 1px, transparent 1px);
     background-size: 48px 48px;
     pointer-events: none;
 }
@@ -435,8 +437,8 @@ main {
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--primary);
-    background: rgba(189, 147, 249, 0.08);
-    border: 1px solid rgba(189, 147, 249, 0.15);
+    background: rgba(78, 205, 255, 0.08);
+    border: 1px solid rgba(78, 205, 255, 0.15);
     padding: 2px 8px;
     border-radius: var(--r-sm);
 }
@@ -626,7 +628,7 @@ main {
     color: var(--primary);
     text-decoration: underline;
     text-underline-offset: 3px;
-    text-decoration-color: rgba(189, 147, 249, 0.4);
+    text-decoration-color: rgba(78, 205, 255, 0.4);
 }
 
 #post-body a:hover {
@@ -1032,7 +1034,7 @@ main {
     margin-top: var(--sp-8);
     margin-bottom: var(--sp-5);
     padding-left: var(--sp-3);
-    border-left: 2px solid rgba(255, 121, 198, 0.3);
+    border-left: 2px solid rgba(167, 139, 250, 0.3);
 }
 
 #recursos-content p {
@@ -1454,7 +1456,7 @@ footer {
 .recurso-card:hover {
     transform: translateY(-2px);
     border-color: var(--border-accent);
-    box-shadow: 0 6px 20px rgba(189, 147, 249, 0.07);
+    box-shadow: 0 6px 20px rgba(78, 205, 255, 0.07);
     color: inherit;
     text-decoration: none;
 }
@@ -1597,7 +1599,7 @@ footer {
 
 .recurso-cert-card:hover {
     transform: translateY(-2px);
-    border-color: rgba(255, 121, 198, 0.2);
+    border-color: rgba(167, 139, 250, 0.2);
     color: inherit;
     text-decoration: none;
 }
@@ -1662,7 +1664,7 @@ footer {
 .recurso-yt-dot {
     width: 30px;
     height: 30px;
-    background: rgba(255, 85, 85, 0.1);
+    background: rgba(255, 107, 138, 0.1);
     border-radius: var(--r-sm);
     display: flex;
     align-items: center;
@@ -1673,7 +1675,7 @@ footer {
 .recurso-yt-dot svg {
     width: 14px;
     height: 14px;
-    color: #ff5555;
+    color: var(--danger);
 }
 
 .recurso-yt-info {
@@ -1793,7 +1795,7 @@ footer {
     border-radius: var(--r-lg);
     padding: var(--sp-6);
     margin-bottom: var(--sp-8);
-    box-shadow: 0 0 0 1px rgba(189, 147, 249, 0.04), 0 8px 32px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 0 0 1px rgba(78, 205, 255, 0.04), 0 8px 32px rgba(0, 0, 0, 0.45);
 }
 
 .conv-field-group {
@@ -1940,20 +1942,20 @@ footer {
 
 .conv-badge--si {
     color: var(--primary);
-    background: rgba(189, 147, 249, 0.1);
-    border: 1px solid rgba(189, 147, 249, 0.25);
+    background: rgba(78, 205, 255, 0.1);
+    border: 1px solid rgba(78, 205, 255, 0.25);
 }
 
 .conv-badge--iec {
     color: var(--secondary);
-    background: rgba(255, 121, 198, 0.1);
-    border: 1px solid rgba(255, 121, 198, 0.25);
+    background: rgba(167, 139, 250, 0.1);
+    border: 1px solid rgba(167, 139, 250, 0.25);
 }
 
 .conv-badge--bits {
-    color: #ffb86c;
-    background: rgba(255, 184, 108, 0.08);
-    border: 1px solid rgba(255, 184, 108, 0.25);
+    color: var(--accent-warm);
+    background: rgba(246, 193, 119, 0.08);
+    border: 1px solid rgba(246, 193, 119, 0.25);
 }
 
 .conv-section-title {
@@ -1977,7 +1979,7 @@ footer {
     gap: var(--sp-3);
     padding: var(--sp-2) var(--sp-5) var(--sp-2) calc(var(--sp-5) + 4px);
     border-bottom: 1px solid var(--border);
-    background: rgba(248, 248, 242, 0.015);
+    background: rgba(244, 248, 255, 0.015);
 }
 
 .conv-col-head span {
@@ -2011,12 +2013,12 @@ footer {
 }
 
 .conv-row:hover {
-    background: rgba(248, 248, 242, 0.025);
+    background: rgba(244, 248, 255, 0.025);
 }
 
 /* Source unit: strong left accent */
 .conv-row.is-source {
-    background: rgba(189, 147, 249, 0.06);
+    background: rgba(78, 205, 255, 0.06);
     border-left-color: var(--primary);
 }
 
