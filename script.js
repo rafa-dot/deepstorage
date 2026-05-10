@@ -2450,6 +2450,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const recursosContainer = document.getElementById('recursos-content');
     const conceitosContainer = document.getElementById('conceitos-content');
 
+    initMobileNav();
     initGlobalSearch();
 
     if (homePostsContainer) {
@@ -2535,6 +2536,11 @@ function initGlobalSearch() {
             results.push({ type: 'page', label: 'Recursos', url: 'recursos.html' });
         }
 
+        // Search Ferramentas
+        if (ferramentasContent.toLowerCase().includes(query)) {
+            results.push({ type: 'page', label: 'Ferramentas', url: 'ferramentas.html' });
+        }
+
         if (results.length === 0) {
             dropdown.innerHTML = '<div class="search-no-match">Nenhum resultado encontrado</div>';
             dropdown.classList.add('active');
@@ -2568,6 +2574,17 @@ function initGlobalSearch() {
             dropdown.classList.remove('active');
             input.value = '';
         }
+    });
+}
+
+function initMobileNav() {
+    const btn = document.querySelector('.nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    if (!btn || !menu) return;
+
+    btn.addEventListener('click', () => {
+        const open = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 }
 
@@ -2700,6 +2717,7 @@ function formatDate(dateString) {
 
 // Plain text used by global search
 const recursosContent = 'StorageReview Blocks Files Reddit storage NetApp Community Dell Community vExpert StorageGaga J Metz Storage Soup SNIA SCSP NCDA NCIE DCS-SA Pure Storage Certified Architect HQS HPE ASE HCIP Storage Newsletter Commvault ServeTheHome IBM Technology Hitachi Vantara Dell Technologies YouTube certificações treinamento fabricantes noticias comunidades blogs';
+const ferramentasContent = 'Ferramentas calculadora RAID capacidade util overhead paridade RAID 0 RAID 1 RAID 5 RAID 6 RAID 10 RAID 50 RAID 60 calculadora tempo de transferencia backup migracao replicacao largura de banda Gbps Mbps throughput eficiencia conversor unidades storage TB TiB GB GiB bytes bits';
 
 function loadRecursosPage(container) {
     container.innerHTML = buildRecursosHTML();

@@ -37,17 +37,28 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="conceitos.html">Conceitos</a></li>
                 <li><a href="recursos.html">Recursos</a></li>
-                <li><a href="conversor.html" class="active" aria-current="page">Conversor</a></li>
+                <li><a href="ferramentas.html" class="active" aria-current="page">Ferramentas</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
         </div>
     </nav>
 
     <main class="container" id="main-content">
+        <a href="ferramentas.html" class="tool-back">Voltar para ferramentas</a>
 
         <div class="conv-page-header">
-            <h1>Conversor de Unidades</h1>
-            <p>Decimal (SI), binário (IEC) e bits de rede — todas as métricas de storage enterprise.</p>
+            <div class="conv-page-header__text">
+                <p class="conv-eyebrow">Ferramenta de capacidade</p>
+                <h1>Conversor de Unidades</h1>
+                <p>Converta entre a leitura prática de sistemas operacionais, unidades IEC e métricas SI usadas por fabricantes.</p>
+            </div>
+            <img
+                class="conv-hero-visual"
+                src="storage-converter-visual.svg"
+                width="420"
+                height="260"
+                alt="Ilustração técnica de unidades de storage sendo convertidas entre TB, GiB e bits"
+            >
         </div>
 
         <!-- Input card -->
@@ -69,7 +80,7 @@
                 <div class="conv-field">
                     <label class="conv-label" for="conv-unit">Unidade de origem</label>
                     <select id="conv-unit" class="conv-unit-select">
-                        <optgroup label="Decimal (SI)">
+                        <optgroup label="KB/MB/GB/TB">
                             <option value="B">Byte (B)</option>
                             <option value="KB">Kilobyte (KB)</option>
                             <option value="MB">Megabyte (MB)</option>
@@ -101,6 +112,26 @@
                     </select>
                 </div>
             </div>
+            <fieldset class="conv-mode-group" aria-describedby="conv-mode-help">
+                <legend class="conv-label">Modo de cálculo para KB, MB, GB e TB</legend>
+                <div class="conv-mode-options">
+                    <label class="conv-mode-option">
+                        <input type="radio" name="conv-mode" value="binary" checked>
+                        <span>
+                            <strong>Base 2 prática</strong>
+                            <small>1 TB = 1024 GB</small>
+                        </span>
+                    </label>
+                    <label class="conv-mode-option">
+                        <input type="radio" name="conv-mode" value="si">
+                        <span>
+                            <strong>SI oficial</strong>
+                            <small>1 TB = 1000 GB</small>
+                        </span>
+                    </label>
+                </div>
+                <p class="conv-mode-help" id="conv-mode-help">Use base 2 para a leitura comum em sistemas operacionais. Use SI para capacidade comercial de HDDs e SSDs.</p>
+            </fieldset>
             <div class="conv-bytes-eq" id="bytes-eq" aria-live="polite"></div>
         </div>
 
@@ -109,16 +140,16 @@
 
             <section class="conv-section" aria-labelledby="section-si">
                 <div class="conv-section-head">
-                    <span class="conv-badge conv-badge--si" aria-hidden="true">SI</span>
+                    <span class="conv-badge conv-badge--si" aria-hidden="true">CAP</span>
                     <div>
-                        <h2 class="conv-section-title" id="section-si">Decimal</h2>
-                        <p class="conv-section-sub">base 10 · 1 KB = 1.000 B</p>
+                        <h2 class="conv-section-title" id="section-si">KB / MB / GB / TB</h2>
+                        <p class="conv-section-sub" id="section-si-sub">base 2 prática · 1 TB = 1.024 GB</p>
                     </div>
                 </div>
                 <div class="conv-col-head" aria-hidden="true">
                     <span>Símbolo</span><span>Unidade</span><span>Valor</span>
                 </div>
-                <div class="conv-table" id="table-si" role="table" aria-label="Conversões decimais SI"></div>
+                <div class="conv-table" id="table-si" role="table" aria-label="Conversões em KB, MB, GB e TB"></div>
             </section>
 
             <section class="conv-section" aria-labelledby="section-iec">
@@ -150,7 +181,7 @@
 
         <div class="conv-note" role="note">
             <svg class="conv-note-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <p><strong>Por que SI e IEC diferem?</strong> Fabricantes (HDD, SSD) anunciam capacidade em SI — 1 TB = 10<sup>12</sup> bytes. O sistema operacional reporta em IEC — 1 TiB = 2<sup>40</sup> bytes ≈ 1,0995 TB. Por isso um disco de "1 TB" aparece como ~931 GiB no Windows ou Linux.</p>
+            <p><strong>Por que isso muda?</strong> Em SI oficial, fabricantes anunciam capacidade em base 10 — 1 TB = 10<sup>12</sup> bytes. Na leitura prática de sistemas operacionais, TB costuma ser usado como atalho para base 2 — 1 TB = 2<sup>40</sup> bytes = 1024 GB. As unidades IEC (KiB, MiB, GiB, TiB) continuam sendo os nomes tecnicamente precisos para base 2.</p>
         </div>
 
     </main>
@@ -269,6 +300,38 @@
         var valInput   = document.getElementById('conv-value');
         var unitSelect = document.getElementById('conv-unit');
         var bytesEqEl  = document.getElementById('bytes-eq');
+        var modeInputs = document.querySelectorAll('input[name="conv-mode"]');
+        var siSubEl    = document.getElementById('section-si-sub');
+        var SI_BINARY_BYTES = {
+            B: 1,
+            KB: Math.pow(1024, 1),
+            MB: Math.pow(1024, 2),
+            GB: Math.pow(1024, 3),
+            TB: Math.pow(1024, 4),
+            PB: Math.pow(1024, 5),
+            EB: Math.pow(1024, 6),
+            ZB: Math.pow(1024, 7),
+            YB: Math.pow(1024, 8)
+        };
+
+        function activeMode() {
+            var checked = document.querySelector('input[name="conv-mode"]:checked');
+            return checked ? checked.value : 'binary';
+        }
+
+        function unitBytes(u) {
+            if (activeMode() === 'binary' && u.group === 'si') {
+                return SI_BINARY_BYTES[u.id] || u.bytes;
+            }
+            return u.bytes;
+        }
+
+        function syncModeLabel() {
+            if (!siSubEl) return;
+            siSubEl.textContent = activeMode() === 'binary'
+                ? 'base 2 prática · 1 TB = 1.024 GB'
+                : 'SI oficial · 1 TB = 1.000 GB';
+        }
 
         function clearAll() {
             UNITS.forEach(function (u) {
@@ -287,7 +350,7 @@
 
             var srcId = unitSelect.value;
             var src   = UNITS.find(function (u) { return u.id === srcId; });
-            var bytes = value * src.bytes;
+            var bytes = value * unitBytes(src);
 
             // bytes equivalent feedback
             if (bytesEqEl) {
@@ -301,7 +364,7 @@
             UNITS.forEach(function (u) {
                 var el  = document.getElementById('val-' + u.id);
                 if (!el) return;
-                var result = bytes / u.bytes;
+                var result = bytes / unitBytes(u);
                 el.textContent  = fmt(result);
                 el.dataset.raw  = rawNum(result);
                 var row = document.querySelector('[data-unit="' + u.id + '"]');
@@ -327,8 +390,15 @@
 
         /* ── Init ──────────────────────────────────────────────── */
         buildRows();
+        syncModeLabel();
         valInput.addEventListener('input', convert);
         unitSelect.addEventListener('change', convert);
+        modeInputs.forEach(function (input) {
+            input.addEventListener('change', function () {
+                syncModeLabel();
+                convert();
+            });
+        });
         document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
         var navBtn  = document.querySelector('.nav-toggle');

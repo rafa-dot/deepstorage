@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferramentas de Storage - Deep Storage</title>
+    <meta name="description" content="Ferramentas praticas para storage enterprise: calculadora de RAID, tempo de transferencia e conversor de unidades.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ferramentas de Storage">
+    <meta property="og:description" content="Calculadoras e conversores para capacidade, RAID e transferencia de dados em ambientes de storage.">
+    <meta property="og:site_name" content="Storage Tech Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Ferramentas de Storage">
+    <meta name="twitter:description" content="Calculadoras e conversores para storage enterprise.">
+
+    <link rel="canonical" href="https://www.deepstorage.tech/ferramentas.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+    <nav class="navbar" aria-label="Navegação principal">
+        <div class="container">
+            <p class="logo"><a href="index.html">Storage Tech</a></p>
+            <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                    <rect x="2" y="5" width="18" height="2" rx="1" fill="currentColor"/>
+                    <rect x="2" y="10" width="18" height="2" rx="1" fill="currentColor"/>
+                    <rect x="2" y="15" width="18" height="2" rx="1" fill="currentColor"/>
+                </svg>
+            </button>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="conceitos.html">Conceitos</a></li>
+                <li><a href="recursos.html">Recursos</a></li>
+                <li><a href="ferramentas.html" class="active" aria-current="page">Ferramentas</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <div class="nav-search" role="search">
+                <input type="search" id="global-search" class="nav-search-input" placeholder="Search" aria-label="Busca global" autocomplete="off">
+                <div class="nav-search-results" id="search-results-dropdown" aria-live="polite"></div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container" id="main-content">
+        <header class="tool-hero">
+            <p class="tool-eyebrow">Ferramentas praticas</p>
+            <h1>Calculadoras para storage enterprise</h1>
+            <p>Utilitarios estaticos para estimar capacidade, tempo de copia e conversoes comuns no dia a dia de infraestrutura.</p>
+        </header>
+
+        <section class="tool-card-grid" aria-label="Ferramentas disponiveis">
+            <a class="tool-card" href="raid.html">
+                <span class="tool-card-icon" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+                </span>
+                <span class="tool-card-kicker">Capacidade</span>
+                <h2>Calculadora de RAID</h2>
+                <p>Estime capacidade bruta, util, overhead e tolerancia a falhas para RAID 0, 1, 5, 6, 10, 50 e 60.</p>
+                <span class="tool-card-link">Abrir ferramenta</span>
+            </a>
+
+            <a class="tool-card" href="transferencia.html">
+                <span class="tool-card-icon tool-card-icon--warm" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17h16"/><path d="M6 17V7"/><path d="M18 17V7"/><path d="M8 9h8"/><path d="m13 6 3 3-3 3"/></svg>
+                </span>
+                <span class="tool-card-kicker">Rede e copia</span>
+                <h2>Tempo de transferencia</h2>
+                <p>Calcule quanto tempo um volume leva para trafegar em um link, com eficiencia ajustavel para overhead real.</p>
+                <span class="tool-card-link">Abrir ferramenta</span>
+            </a>
+
+            <a class="tool-card" href="conversor.html">
+                <span class="tool-card-icon tool-card-icon--secondary" aria-hidden="true">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h11l-3-3"/><path d="M17 17H6l3 3"/><path d="M18 7 6 19"/></svg>
+                </span>
+                <span class="tool-card-kicker">Unidades</span>
+                <h2>Conversor de unidades</h2>
+                <p>Converta entre KB, MB, GB, TB, unidades IEC e bits de rede com modo SI oficial ou base 2 pratica.</p>
+                <span class="tool-card-link">Abrir ferramenta</span>
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="copyright-year"></span> Storage Tech Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -19,6 +19,30 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://www.deepstorage.tech/ferramentas.html</loc>
+        <lastmod>2026-05-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.deepstorage.tech/raid.html</loc>
+        <lastmod>2026-05-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.deepstorage.tech/transferencia.html</loc>
+        <lastmod>2026-05-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.deepstorage.tech/conversor.html</loc>
+        <lastmod>2026-05-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://www.deepstorage.tech/about.html</loc>
         <lastmod>2026-03-19</lastmod>
         <changefreq>yearly</changefreq>

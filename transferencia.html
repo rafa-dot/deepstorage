@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tempo de Transferencia - Deep Storage</title>
+    <meta name="description" content="Calcule tempo estimado para transferir dados conforme volume, velocidade de link e eficiencia efetiva.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de Tempo de Transferencia">
+    <meta property="og:description" content="Estime tempo de copia, throughput efetivo e volume transferido por hora ou dia.">
+    <meta property="og:site_name" content="Storage Tech Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Calculadora de Tempo de Transferencia">
+    <meta name="twitter:description" content="Estime tempo de transferencia de dados em links de rede.">
+
+    <link rel="canonical" href="https://www.deepstorage.tech/transferencia.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+    <nav class="navbar" aria-label="Navegação principal">
+        <div class="container">
+            <p class="logo"><a href="index.html">Storage Tech</a></p>
+            <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                    <rect x="2" y="5" width="18" height="2" rx="1" fill="currentColor"/>
+                    <rect x="2" y="10" width="18" height="2" rx="1" fill="currentColor"/>
+                    <rect x="2" y="15" width="18" height="2" rx="1" fill="currentColor"/>
+                </svg>
+            </button>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="conceitos.html">Conceitos</a></li>
+                <li><a href="recursos.html">Recursos</a></li>
+                <li><a href="ferramentas.html" class="active" aria-current="page">Ferramentas</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <div class="nav-search" role="search">
+                <input type="search" id="global-search" class="nav-search-input" placeholder="Search" aria-label="Busca global" autocomplete="off">
+                <div class="nav-search-results" id="search-results-dropdown" aria-live="polite"></div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container" id="main-content">
+        <a href="ferramentas.html" class="tool-back">Voltar para ferramentas</a>
+
+        <header class="tool-hero tool-hero--compact">
+            <p class="tool-eyebrow">Rede, backup e migracao</p>
+            <h1>Tempo de transferencia</h1>
+            <p>Calcule a duracao estimada para copiar volumes de dados em links de rede ou throughput de storage, considerando uma eficiencia efetiva.</p>
+        </header>
+
+        <section class="tool-calculator" aria-label="Calculadora de tempo de transferencia">
+            <form class="tool-form" id="transfer-form">
+                <div class="tool-form-grid">
+                    <div class="tool-field">
+                        <label for="transfer-size">Volume de dados</label>
+                        <input id="transfer-size" type="number" min="0" step="any" value="10" inputmode="decimal">
+                    </div>
+                    <div class="tool-field">
+                        <label for="transfer-size-unit">Unidade do volume</label>
+                        <select id="transfer-size-unit">
+                            <option value="TB">TB</option>
+                            <option value="TiB">TiB</option>
+                            <option value="GB">GB</option>
+                            <option value="GiB">GiB</option>
+                        </select>
+                    </div>
+                    <div class="tool-field">
+                        <label for="transfer-speed">Velocidade do link</label>
+                        <input id="transfer-speed" type="number" min="0" step="any" value="10" inputmode="decimal">
+                    </div>
+                    <div class="tool-field">
+                        <label for="transfer-speed-unit">Unidade da velocidade</label>
+                        <select id="transfer-speed-unit">
+                            <option value="Gbps">Gbps</option>
+                            <option value="Mbps">Mbps</option>
+                            <option value="GBps">GB/s</option>
+                            <option value="MBps">MB/s</option>
+                        </select>
+                    </div>
+                    <div class="tool-field">
+                        <label for="transfer-efficiency">Eficiencia efetiva (%)</label>
+                        <input id="transfer-efficiency" type="number" min="1" max="100" step="1" value="80" inputmode="numeric">
+                    </div>
+                </div>
+            </form>
+
+            <div class="tool-result-panel" aria-live="polite">
+                <div class="tool-result-main">
+                    <span>Tempo estimado</span>
+                    <strong id="transfer-time">-</strong>
+                </div>
+                <div class="tool-metric-grid">
+                    <div class="tool-metric">
+                        <span>Throughput efetivo</span>
+                        <strong id="transfer-effective">-</strong>
+                    </div>
+                    <div class="tool-metric">
+                        <span>Por hora</span>
+                        <strong id="transfer-hour">-</strong>
+                    </div>
+                    <div class="tool-metric">
+                        <span>Por dia</span>
+                        <strong id="transfer-day">-</strong>
+                    </div>
+                    <div class="tool-metric">
+                        <span>Volume</span>
+                        <strong id="transfer-volume">-</strong>
+                    </div>
+                </div>
+                <p class="tool-result-note" id="transfer-note"></p>
+            </div>
+        </section>
+
+        <div class="tool-note" role="note">
+            <strong>Observacao tecnica:</strong> latencia, protocolo, deduplicacao, compressao, janela de backup, concorrencia e throttling podem alterar o tempo real.
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="copyright-year"></span> Storage Tech Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+    (function () {
+        'use strict';
+
+        var sizeUnits = {
+            GB: 1e9,
+            TB: 1e12,
+            GiB: Math.pow(1024, 3),
+            TiB: Math.pow(1024, 4)
+        };
+
+        var speedUnits = {
+            Mbps: 1e6 / 8,
+            Gbps: 1e9 / 8,
+            MBps: 1e6,
+            GBps: 1e9
+        };
+
+        var els = {
+            size: document.getElementById('transfer-size'),
+            sizeUnit: document.getElementById('transfer-size-unit'),
+            speed: document.getElementById('transfer-speed'),
+            speedUnit: document.getElementById('transfer-speed-unit'),
+            efficiency: document.getElementById('transfer-efficiency'),
+            time: document.getElementById('transfer-time'),
+            effective: document.getElementById('transfer-effective'),
+            hour: document.getElementById('transfer-hour'),
+            day: document.getElementById('transfer-day'),
+            volume: document.getElementById('transfer-volume'),
+            note: document.getElementById('transfer-note')
+        };
+
+        function formatBytes(bytes) {
+            if (!isFinite(bytes) || bytes <= 0) return '-';
+            var tb = bytes / 1e12;
+            if (tb >= 1) return tb.toLocaleString('pt-BR', { maximumFractionDigits: 2 }) + ' TB';
+            return (bytes / 1e9).toLocaleString('pt-BR', { maximumFractionDigits: 2 }) + ' GB';
+        }
+
+        function formatSpeed(bytesPerSecond) {
+            if (!isFinite(bytesPerSecond) || bytesPerSecond <= 0) return '-';
+            var gbps = (bytesPerSecond * 8) / 1e9;
+            var mbps = (bytesPerSecond * 8) / 1e6;
+            if (gbps >= 1) return gbps.toLocaleString('pt-BR', { maximumFractionDigits: 2 }) + ' Gbps';
+            return mbps.toLocaleString('pt-BR', { maximumFractionDigits: 2 }) + ' Mbps';
+        }
+
+        function formatDuration(seconds) {
+            if (!isFinite(seconds) || seconds <= 0) return '-';
+            var days = Math.floor(seconds / 86400);
+            var hours = Math.floor((seconds % 86400) / 3600);
+            var minutes = Math.floor((seconds % 3600) / 60);
+            if (days > 0) return days + 'd ' + hours + 'h ' + minutes + 'min';
+            if (hours > 0) return hours + 'h ' + minutes + 'min';
+            return Math.max(1, minutes) + 'min';
+        }
+
+        function calculateTransfer() {
+            var size = Number(els.size.value);
+            var speed = Number(els.speed.value);
+            var efficiency = Number(els.efficiency.value);
+            var totalBytes = size * sizeUnits[els.sizeUnit.value];
+            var rawBytesPerSecond = speed * speedUnits[els.speedUnit.value];
+            var effectiveBytesPerSecond = rawBytesPerSecond * (efficiency / 100);
+
+            if (!size || size <= 0 || !speed || speed <= 0 || !efficiency || efficiency <= 0) {
+                els.time.textContent = '-';
+                els.effective.textContent = '-';
+                els.hour.textContent = '-';
+                els.day.textContent = '-';
+                els.volume.textContent = '-';
+                els.note.textContent = 'Informe volume, velocidade e eficiencia validos.';
+                return;
+            }
+
+            var seconds = totalBytes / effectiveBytesPerSecond;
+            els.time.textContent = formatDuration(seconds);
+            els.effective.textContent = formatSpeed(effectiveBytesPerSecond);
+            els.hour.textContent = formatBytes(effectiveBytesPerSecond * 3600);
+            els.day.textContent = formatBytes(effectiveBytesPerSecond * 86400);
+            els.volume.textContent = formatBytes(totalBytes);
+            els.note.textContent = 'Calculo usando ' + efficiency + '% da velocidade informada como throughput efetivo.';
+        }
+
+        window.calculateTransfer = calculateTransfer;
+        ['change', 'input'].forEach(function (eventName) {
+            document.getElementById('transfer-form').addEventListener(eventName, calculateTransfer);
+        });
+        calculateTransfer();
+    })();
+    </script>
+</body>
+</html>

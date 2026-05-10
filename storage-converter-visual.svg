@@ -1,0 +1,36 @@
+<svg width="420" height="260" viewBox="0 0 420 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Conversao de unidades de storage</title>
+  <desc id="desc">Ilustracao tecnica com discos, linhas de dados e unidades TB, GiB e bits.</desc>
+  <rect width="420" height="260" rx="12" fill="#0d1320"/>
+  <rect x="18" y="18" width="384" height="224" rx="8" fill="#05070d" stroke="rgba(214,231,255,0.09)"/>
+  <path d="M18 66H402M18 114H402M18 162H402M18 210H402" stroke="#1b2840" stroke-width="1"/>
+  <path d="M66 18V242M114 18V242M162 18V242M210 18V242M258 18V242M306 18V242M354 18V242" stroke="#1b2840" stroke-width="1"/>
+
+  <rect x="44" y="48" width="124" height="164" rx="8" fill="#111a2b" stroke="rgba(78,205,255,0.26)"/>
+  <rect x="60" y="68" width="92" height="28" rx="4" fill="#1b2840"/>
+  <rect x="60" y="108" width="92" height="28" rx="4" fill="#1b2840"/>
+  <rect x="60" y="148" width="92" height="28" rx="4" fill="#1b2840"/>
+  <circle cx="76" cy="82" r="5" fill="#56f39a"/>
+  <circle cx="76" cy="122" r="5" fill="#4ecdff"/>
+  <circle cx="76" cy="162" r="5" fill="#a78bfa"/>
+  <path d="M94 82H136M94 122H136M94 162H136" stroke="#8aa0bd" stroke-width="4" stroke-linecap="round"/>
+  <path d="M72 196H140" stroke="#4ecdff" stroke-width="2" stroke-linecap="round"/>
+
+  <path d="M184 84C218 84 218 62 252 62H282" stroke="#4ecdff" stroke-width="3" stroke-linecap="round"/>
+  <path d="M184 130H282" stroke="#5eead4" stroke-width="3" stroke-linecap="round"/>
+  <path d="M184 176C218 176 218 198 252 198H282" stroke="#a78bfa" stroke-width="3" stroke-linecap="round"/>
+  <path d="M272 54L284 62L272 70M272 122L284 130L272 138M272 190L284 198L272 206" stroke="#f4f8ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="286" y="42" width="92" height="42" rx="6" fill="#111a2b" stroke="rgba(78,205,255,0.26)"/>
+  <rect x="286" y="109" width="92" height="42" rx="6" fill="#111a2b" stroke="rgba(94,234,212,0.28)"/>
+  <rect x="286" y="176" width="92" height="42" rx="6" fill="#111a2b" stroke="rgba(167,139,250,0.3)"/>
+  <text x="302" y="67" fill="#4ecdff" font-family="JetBrains Mono, monospace" font-size="16" font-weight="700">1 TB</text>
+  <text x="302" y="134" fill="#5eead4" font-family="JetBrains Mono, monospace" font-size="16" font-weight="700">1024 GB</text>
+  <text x="302" y="201" fill="#a78bfa" font-family="JetBrains Mono, monospace" font-size="16" font-weight="700">8192 Gb</text>
+
+  <circle cx="210" cy="130" r="22" fill="#111a2b" stroke="#4ecdff"/>
+  <path d="M202 130H218M210 122V138" stroke="#f4f8ff" stroke-width="2" stroke-linecap="round"/>
+  <path d="M198 223H222" stroke="#4ecdff" stroke-width="2" stroke-linecap="round"/>
+  <path d="M234 223H258" stroke="#a78bfa" stroke-width="2" stroke-linecap="round"/>
+  <path d="M270 223H294" stroke="#5eead4" stroke-width="2" stroke-linecap="round"/>
+</svg>

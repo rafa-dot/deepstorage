@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de RAID - Deep Storage</title>
+    <meta name="description" content="Calculadora de RAID para estimar capacidade util, overhead e tolerancia a falhas em RAID 0, 1, 5, 6, 10, 50 e 60.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de RAID">
+    <meta property="og:description" content="Estime capacidade bruta, util, overhead e tolerancia a falhas para grupos RAID.">
+    <meta property="og:site_name" content="Storage Tech Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Calculadora de RAID">
+    <meta name="twitter:description" content="Estime capacidade util e overhead de RAID.">
+
+    <link rel="canonical" href="https://www.deepstorage.tech/raid.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+    <nav class="navbar" aria-label="Navegação principal">
+        <div class="container">
+            <p class="logo"><a href="index.html">Storage Tech</a></p>
+            <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                    <rect x="2" y="5" width="18" height="2" rx="1" fill="currentColor"/>
+                    <rect x="2" y="10" width="18" height="2" rx="1" fill="currentColor"/>
+                    <rect x="2" y="15" width="18" height="2" rx="1" fill="currentColor"/>
+                </svg>
+            </button>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="conceitos.html">Conceitos</a></li>
+                <li><a href="recursos.html">Recursos</a></li>
+                <li><a href="ferramentas.html" class="active" aria-current="page">Ferramentas</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <div class="nav-search" role="search">
+                <input type="search" id="global-search" class="nav-search-input" placeholder="Search" aria-label="Busca global" autocomplete="off">
+                <div class="nav-search-results" id="search-results-dropdown" aria-live="polite"></div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container" id="main-content">
+        <a href="ferramentas.html" class="tool-back">Voltar para ferramentas</a>
+
+        <header class="tool-hero tool-hero--compact">
+            <p class="tool-eyebrow">Capacidade e paridade</p>
+            <h1>Calculadora de RAID</h1>
+            <p>Estime capacidade bruta, capacidade util, overhead e tolerancia a falhas. O resultado e uma referencia conceitual, nao substitui documentacao do fabricante.</p>
+        </header>
+
+        <section class="tool-calculator" aria-label="Calculadora de RAID">
+            <form class="tool-form" id="raid-form">
+                <div class="tool-form-grid">
+                    <div class="tool-field">
+                        <label for="raid-level">Nivel de RAID</label>
+                        <select id="raid-level">
+                            <option value="raid5">RAID 5</option>
+                            <option value="raid6">RAID 6</option>
+                            <option value="raid10">RAID 10</option>
+                            <option value="raid1">RAID 1</option>
+                            <option value="raid0">RAID 0</option>
+                            <option value="raid50">RAID 50</option>
+                            <option value="raid60">RAID 60</option>
+                        </select>
+                    </div>
+                    <div class="tool-field">
+                        <label for="raid-disks">Quantidade de discos</label>
+                        <input id="raid-disks" type="number" min="1" step="1" value="8" inputmode="numeric">
+                    </div>
+                    <div class="tool-field">
+                        <label for="raid-size">Tamanho por disco</label>
+                        <input id="raid-size" type="number" min="0" step="any" value="1.92" inputmode="decimal">
+                    </div>
+                    <div class="tool-field">
+                        <label for="raid-unit">Unidade</label>
+                        <select id="raid-unit">
+                            <option value="TB">TB</option>
+                            <option value="TiB">TiB</option>
+                            <option value="GB">GB</option>
+                            <option value="GiB">GiB</option>
+                        </select>
+                    </div>
+                    <div class="tool-field" id="raid-groups-field">
+                        <label for="raid-groups">Grupos RAID</label>
+                        <input id="raid-groups" type="number" min="2" step="1" value="2" inputmode="numeric">
+                    </div>
+                </div>
+            </form>
+
+            <div class="tool-result-panel" aria-live="polite">
+                <div class="tool-result-main">
+                    <span>Capacidade util estimada</span>
+                    <strong id="raid-usable">-</strong>
+                </div>
+                <div class="tool-metric-grid">
+                    <div class="tool-metric">
+                        <span>Bruta</span>
+                        <strong id="raid-raw">-</strong>
+                    </div>
+                    <div class="tool-metric">
+                        <span>Overhead</span>
+                        <strong id="raid-overhead">-</strong>
+                    </div>
+                    <div class="tool-metric">
+                        <span>Falhas toleradas</span>
+                        <strong id="raid-faults">-</strong>
+                    </div>
+                    <div class="tool-metric">
+                        <span>Discos uteis</span>
+                        <strong id="raid-data-disks">-</strong>
+                    </div>
+                </div>
+                <p class="tool-result-note" id="raid-note"></p>
+            </div>
+        </section>
+
+        <div class="tool-note" role="note">
+            <strong>Observacao tecnica:</strong> arrays enterprise podem usar spare, distributed parity, erasure coding, chunk sizes e reservas internas que mudam o numero final. Use esta ferramenta para planejamento inicial.
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="copyright-year"></span> Storage Tech Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+    (function () {
+        'use strict';
+
+        var units = {
+            GB: 1e9,
+            TB: 1e12,
+            GiB: Math.pow(1024, 3),
+            TiB: Math.pow(1024, 4)
+        };
+
+        var els = {
+            level: document.getElementById('raid-level'),
+            disks: document.getElementById('raid-disks'),
+            size: document.getElementById('raid-size'),
+            unit: document.getElementById('raid-unit'),
+            groups: document.getElementById('raid-groups'),
+            groupsField: document.getElementById('raid-groups-field'),
+            usable: document.getElementById('raid-usable'),
+            raw: document.getElementById('raid-raw'),
+            overhead: document.getElementById('raid-overhead'),
+            faults: document.getElementById('raid-faults'),
+            dataDisks: document.getElementById('raid-data-disks'),
+            note: document.getElementById('raid-note')
+        };
+
+        function formatCapacity(bytes) {
+            if (!isFinite(bytes) || bytes <= 0) return '-';
+            var tb = bytes / 1e12;
+            var tib = bytes / Math.pow(1024, 4);
+            return tb.toLocaleString('pt-BR', { maximumFractionDigits: 2 }) + ' TB / ' +
+                tib.toLocaleString('pt-BR', { maximumFractionDigits: 2 }) + ' TiB';
+        }
+
+        function formatPercent(value) {
+            return value.toLocaleString('pt-BR', { maximumFractionDigits: 1 }) + '%';
+        }
+
+        function raidProfile(level, disks, groups) {
+            var notes = {
+                raid0: 'RAID 0 nao oferece redundancia. A perda de um disco compromete o conjunto.',
+                raid1: 'Modelo simplificado de espelhamento: capacidade equivalente a um disco.',
+                raid5: 'RAID 5 usa paridade simples. Tolera uma falha no grupo.',
+                raid6: 'RAID 6 usa paridade dupla. Tolera duas falhas no grupo.',
+                raid10: 'RAID 10 combina espelhamento e stripe. Use quantidade par de discos para pares completos.',
+                raid50: 'RAID 50 combina grupos RAID 5 em stripe. Tolera uma falha por grupo.',
+                raid60: 'RAID 60 combina grupos RAID 6 em stripe. Tolera duas falhas por grupo.'
+            };
+
+            if (level === 'raid0') return { min: 1, data: disks, faults: '0', note: notes[level] };
+            if (level === 'raid1') return { min: 2, data: 1, faults: String(Math.max(disks - 1, 0)), note: notes[level] };
+            if (level === 'raid5') return { min: 3, data: disks - 1, faults: '1', note: notes[level] };
+            if (level === 'raid6') return { min: 4, data: disks - 2, faults: '2', note: notes[level] };
+            if (level === 'raid10') return { min: 4, data: Math.floor(disks / 2), faults: '1 por espelho', note: notes[level] };
+            if (level === 'raid50') return { min: 6, data: disks - groups, faults: '1 por grupo', note: notes[level] };
+            return { min: 8, data: disks - (2 * groups), faults: '2 por grupo', note: notes[level] };
+        }
+
+        function calculateRaid() {
+            var disks = Math.floor(Number(els.disks.value));
+            var diskSize = Number(els.size.value);
+            var level = els.level.value;
+            var unitBytes = units[els.unit.value];
+            var groups = Math.floor(Number(els.groups.value));
+            var grouped = level === 'raid50' || level === 'raid60';
+            els.groupsField.hidden = !grouped;
+
+            if (!disks || disks < 1 || !diskSize || diskSize <= 0 || !unitBytes) {
+                els.usable.textContent = '-';
+                els.raw.textContent = '-';
+                els.overhead.textContent = '-';
+                els.faults.textContent = '-';
+                els.dataDisks.textContent = '-';
+                els.note.textContent = 'Informe uma quantidade de discos e tamanho validos.';
+                return;
+            }
+
+            if (!grouped) groups = 1;
+            if (grouped && (!groups || groups < 2 || groups >= disks)) {
+                els.usable.textContent = '-';
+                els.raw.textContent = '-';
+                els.overhead.textContent = '-';
+                els.faults.textContent = '-';
+                els.dataDisks.textContent = '-';
+                els.note.textContent = 'Para RAID 50/60, informe pelo menos 2 grupos e menos grupos do que discos.';
+                return;
+            }
+
+            if (level === 'raid50' && Math.floor(disks / groups) < 3) {
+                els.usable.textContent = '-';
+                els.raw.textContent = '-';
+                els.overhead.textContent = '-';
+                els.faults.textContent = '-';
+                els.dataDisks.textContent = '-';
+                els.note.textContent = 'RAID 50 exige pelo menos 3 discos por grupo RAID 5.';
+                return;
+            }
+
+            if (level === 'raid60' && Math.floor(disks / groups) < 4) {
+                els.usable.textContent = '-';
+                els.raw.textContent = '-';
+                els.overhead.textContent = '-';
+                els.faults.textContent = '-';
+                els.dataDisks.textContent = '-';
+                els.note.textContent = 'RAID 60 exige pelo menos 4 discos por grupo RAID 6.';
+                return;
+            }
+
+            var profile = raidProfile(level, disks, groups);
+            if (disks < profile.min || profile.data <= 0) {
+                els.usable.textContent = '-';
+                els.raw.textContent = formatCapacity(disks * diskSize * unitBytes);
+                els.overhead.textContent = '-';
+                els.faults.textContent = '-';
+                els.dataDisks.textContent = '-';
+                els.note.textContent = 'Este nivel exige no minimo ' + profile.min + ' discos.';
+                return;
+            }
+
+            var rawBytes = disks * diskSize * unitBytes;
+            var usableBytes = profile.data * diskSize * unitBytes;
+            var overhead = rawBytes === 0 ? 0 : ((rawBytes - usableBytes) / rawBytes) * 100;
+
+            els.usable.textContent = formatCapacity(usableBytes);
+            els.raw.textContent = formatCapacity(rawBytes);
+            els.overhead.textContent = formatPercent(overhead);
+            els.faults.textContent = profile.faults;
+            els.dataDisks.textContent = String(profile.data);
+            els.note.textContent = profile.note;
+        }
+
+        window.calculateRaid = calculateRaid;
+        ['change', 'input'].forEach(function (eventName) {
+            document.getElementById('raid-form').addEventListener(eventName, calculateRaid);
+        });
+        calculateRaid();
+    })();
+    </script>
+</body>
+</html>
