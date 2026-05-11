@@ -308,32 +308,52 @@ a:hover {
    HERO
    ===================================================== */
 .hero {
-    background: var(--surface);
+    background:
+        radial-gradient(120% 120% at 50% 0%, rgba(78, 205, 255, 0.16) 0%, rgba(78, 205, 255, 0) 55%),
+        radial-gradient(95% 140% at 100% 0%, rgba(167, 139, 250, 0.2) 0%, rgba(167, 139, 250, 0) 60%),
+        linear-gradient(180deg, #071127 0%, var(--surface) 48%, #091023 100%);
     padding: 4rem 0 3.5rem;
     text-align: center;
     border-bottom: 1px solid var(--border-accent);
     position: relative;
     overflow: hidden;
+    isolation: isolate;
 }
 
-/* Subtle static grid */
+/* Layer 1: grid + data trails */
 .hero::before {
     content: '';
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(rgba(78, 205, 255, 0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(78, 205, 255, 0.025) 1px, transparent 1px);
-    background-size: 48px 48px;
+        linear-gradient(rgba(78, 205, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(78, 205, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(110deg, rgba(78, 205, 255, 0.14) 0%, rgba(78, 205, 255, 0) 35%),
+        linear-gradient(250deg, rgba(167, 139, 250, 0.13) 0%, rgba(167, 139, 250, 0) 42%);
+    background-size: 44px 44px, 44px 44px, 100% 100%, 100% 100%;
+    background-position: center center, center center, 0 0, 0 0;
+    opacity: 0.85;
+    transform-origin: center;
+    animation: hero-pan 26s linear infinite;
     pointer-events: none;
 }
 
-/* Radial fade overlay so grid fades toward center */
+/* Layer 2: scan + vignette */
 .hero::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 70% 100% at 50% 100%, transparent 40%, var(--surface) 100%);
+    background:
+        linear-gradient(
+            180deg,
+            rgba(78, 205, 255, 0) 0%,
+            rgba(78, 205, 255, 0.14) 45%,
+            rgba(78, 205, 255, 0) 80%
+        ),
+        radial-gradient(ellipse 90% 120% at 50% 100%, rgba(5, 7, 13, 0) 48%, rgba(5, 7, 13, 0.86) 100%);
+    background-size: 100% 220%, 100% 100%;
+    background-position: 0 140%, 0 0;
+    animation: hero-scan 8s ease-in-out infinite;
     pointer-events: none;
 }
 
@@ -345,13 +365,14 @@ a:hover {
 .hero h1 {
     font-size: clamp(2rem, 5vw, 3.25rem);
     font-weight: 700;
-    letter-spacing: -0.025em;
+    letter-spacing: 0;
     line-height: 1.1;
     margin-bottom: var(--sp-4);
     background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-shadow: 0 0 22px rgba(78, 205, 255, 0.22);
 }
 
 .hero p {
@@ -360,6 +381,30 @@ a:hover {
     letter-spacing: 0.01em;
     max-width: 580px;
     margin: 0 auto;
+}
+
+@keyframes hero-pan {
+    0% {
+        transform: scale(1) translate3d(0, 0, 0);
+    }
+    50% {
+        transform: scale(1.03) translate3d(-1.2%, 0.6%, 0);
+    }
+    100% {
+        transform: scale(1) translate3d(0, 0, 0);
+    }
+}
+
+@keyframes hero-scan {
+    0%,
+    100% {
+        background-position: 0 140%, 0 0;
+        opacity: 0.7;
+    }
+    50% {
+        background-position: 0 -40%, 0 0;
+        opacity: 1;
+    }
 }
 
 /* =====================================================
@@ -2679,6 +2724,8 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .hero::before,
+    .hero::after,
     .conv-row,
     .conv-copy,
     .conv-value-input,
@@ -2689,6 +2736,7 @@ footer {
     .tool-field input,
     .tool-field select,
     .tool-back {
+        animation: none;
         transition: none;
     }
 }
